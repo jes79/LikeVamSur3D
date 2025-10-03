@@ -24,7 +24,7 @@ public class Player_Movenment : MonoBehaviour
 
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Move();
         Rotate();

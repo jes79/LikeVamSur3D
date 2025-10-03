@@ -33,6 +33,8 @@ public class Spawner : MonoBehaviour
         Vector3 spawnPos = GetRandomPointOnCircleEdge(player.position, spawnRadius);
 
         GameObject monster = Instantiate(monsterPrefab, spawnPos, Quaternion.identity);
+        //monster.GetComponent<Monster_Movement>().SetTarget(player);
+        monster.GetComponent<Monster_Movement>().Initialize(player);
     }
 
     Vector3 GetRandomPointOnCircleEdge(Vector3 center, float radius)
@@ -43,4 +45,6 @@ public class Spawner : MonoBehaviour
 
         return new Vector3(center.x +x , center.y, center.z+ z);
     }
+
+ 
 }
