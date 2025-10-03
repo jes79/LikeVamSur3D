@@ -7,8 +7,8 @@ public class Player_Movenment : MonoBehaviour
     public float moveSpeed = 5.0f;
     private Vector3 moveDir;
 
-    public float detectionRadius = 10.0f;
-    public LayerMask monsterLayer;
+    //public float detectionRadius = 10.0f;
+    //public LayerMask monsterLayer;
 
     private CharacterController controller;
     private Animator animator;
@@ -17,7 +17,7 @@ public class Player_Movenment : MonoBehaviour
     public Vector3 cameraDir = Vector3.zero;
 
 
-    private Transform Target;
+    //private Transform target;
 
     private void Start()
     {
@@ -49,11 +49,15 @@ public class Player_Movenment : MonoBehaviour
 
     void Rotate()
     {
-        Transform nearest = GetNearestMonster();
+        //Transform nearest = GetNearestMonster();
+        //Player.Instance.target = Player.Instance.GetNearestMonster();
 
-        if (nearest != null)
+
+
+        if (Player.instance.target != null)
         {
-            Vector3 dirToMonster = (nearest.position - transform.position);
+            //Vector3 dirToMonster = (Player.instance.target.position - transform.position);
+            Vector3 dirToMonster = Player.instance.Direction();
             dirToMonster.y = 0; 
 
             RotateToQuaternion(dirToMonster);
@@ -73,8 +77,8 @@ public class Player_Movenment : MonoBehaviour
         Quaternion targetRot = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 10f * Time.deltaTime);
     }
-
-    Transform GetNearestMonster()
+/*
+    public Transform GetNearestMonster()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position,detectionRadius, monsterLayer);
         Transform nearest = null;
@@ -93,6 +97,7 @@ public class Player_Movenment : MonoBehaviour
         return nearest;
 
     }
+*/
 
     void Animate()
     {

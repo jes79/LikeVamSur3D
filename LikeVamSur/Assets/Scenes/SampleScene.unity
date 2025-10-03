@@ -181,7 +181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b18e290713aed394a898f0c2f847b11a, type: 3}
       propertyPath: m_Name
-      value: Adventure
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -196,6 +196,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b18e290713aed394a898f0c2f847b11a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 771377080}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b18e290713aed394a898f0c2f847b11a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 919132149140497302}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b18e290713aed394a898f0c2f847b11a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 919132149140497301}
   m_SourcePrefab: {fileID: 100100000, guid: b18e290713aed394a898f0c2f847b11a, type: 3}
 --- !u!1 &330585543
 GameObject:
@@ -455,11 +461,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
---- !u!1 &771377076 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b18e290713aed394a898f0c2f847b11a, type: 3}
-  m_PrefabInstance: {fileID: 119807685}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &771377077
 Animator:
   serializedVersion: 7
@@ -467,7 +468,7 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 771377076}
+  m_GameObject: {fileID: 919132149140497300}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: e61ab0212914bca4894227a3beb1d3b0, type: 2}
@@ -488,7 +489,7 @@ CharacterController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 771377076}
+  m_GameObject: {fileID: 919132149140497300}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -507,18 +508,13 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.07, z: 0}
---- !u!4 &771377079 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b18e290713aed394a898f0c2f847b11a, type: 3}
-  m_PrefabInstance: {fileID: 119807685}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &771377080
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 771377076}
+  m_GameObject: {fileID: 919132149140497300}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38ef2128329d79e49b1f1ef76514ae3c, type: 3}
@@ -569,7 +565,7 @@ Transform:
   m_GameObject: {fileID: 832575517}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -6.9, y: 2.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -606,7 +602,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnRadius: 30
   monsterPrefab: {fileID: 3141925786623193410, guid: 7168c87f8cb3fe248852bff671844bb9, type: 3}
-  player: {fileID: 771377079}
+  player: {fileID: 543450653613717806}
   spawnInterval: 1
   timer: 0
 --- !u!4 &968557482
@@ -733,6 +729,45 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &543450653613717806 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b18e290713aed394a898f0c2f847b11a, type: 3}
+  m_PrefabInstance: {fileID: 119807685}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &919132149140497300 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b18e290713aed394a898f0c2f847b11a, type: 3}
+  m_PrefabInstance: {fileID: 119807685}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &919132149140497301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149140497300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f89c5d755649b439cf3e05da285b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRadius: 10
+  monsterLayer:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &919132149140497302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149140497300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3472e6d1d101e2c45bf263b975ceed73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 8828356469919063270, guid: 1697eb95493636a4db511e5efadf22ae, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
