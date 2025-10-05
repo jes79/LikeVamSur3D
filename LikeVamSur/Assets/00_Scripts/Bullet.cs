@@ -6,6 +6,8 @@ public class Bullet : MonoBehaviour
     public float lifetiem = 5.0f;
     public GameObject ExplosionParticle;
 
+    public GameObject DamageObject;
+
     private Vector3 direction;
 
 
@@ -25,7 +27,12 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Monster"))
         {
-            Instantiate(ExplosionParticle, transform.position, Quaternion.identity); 
+            Instantiate(ExplosionParticle, transform.position, Quaternion.identity);
+            GameObject damageFont = Instantiate(DamageObject);
+            damageFont.GetComponent<DamageTMP>().Initialize(
+                Base_Canvas.instance.transform,
+                transform.position,
+                "10");
             Destroy(this.gameObject);
         }
     }
