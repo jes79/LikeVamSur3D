@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -15,7 +16,15 @@ public class Bullet : MonoBehaviour
     public void Initialize(Vector3 dir)
     {
         direction = dir;
-        Destroy(this.gameObject, lifetiem);
+        //Destroy(this.gameObject, lifetiem);
+
+        StartCoroutine(DestroyCoroutine(5));
+    }
+
+    IEnumerator DestroyCoroutine(float timer)
+    {
+        yield return new WaitForSeconds(timer);
+        MANAGER.POOL.m_pool_Dictionary["Projectile"].Return(this.gameObject);
     }
 
     void Update()
@@ -28,12 +37,26 @@ public class Bullet : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Monster"))
         {
             Instantiate(ExplosionParticle, transform.position, Quaternion.identity);
-            GameObject damageFont = Instantiate(DamageObject);
-            damageFont.GetComponent<DamageTMP>().Initialize(
-                Base_Canvas.instance.transform,
-                transform.position,
-                "10");
-            Destroy(this.gameObject);
+
+
+            //GameObject damageFont = Instantiate(DamageObject);
+            //damageFont.GetComponent<DamageTMP>().Initialize(
+            //    Base_Canvas.instance.transform,
+            //    transform.position,
+            //    "10");
+
+            var damageFont = MANAGER.POOL.Pooling_OBJ("DamageFont").Get((value) =>
+            {
+                value.GetComponent<DamageTMP>().Initialize(
+                    Base_Canvas.instance.transform, 
+                    transform.position, 
+                    "10");
+            });
+
+
+            //Destroy(this.gameObject);
+            MANAGER.POOL.m_pool_Dictionary["Projectile"].Return(this.gameObject);
+
         }
     }
 }

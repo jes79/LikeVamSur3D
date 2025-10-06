@@ -49,8 +49,8 @@ public class DamageTMP : MonoBehaviour
             yield return null; 
         }
 
-        Destroy(gameObject);
-
+        //Destroy(gameObject);
+        MANAGER.POOL.m_pool_Dictionary["DamageFont"].Return(this.gameObject);
     }
    
 }

@@ -31,8 +31,15 @@ public class Player_Attacker : MonoBehaviour
             fireDir = transform.forward;
         }
 
-        
-        GameObject bullet = Instantiate(bulletPrefab, (transform.position+ new Vector3(0,1f,0)) + fireDir, Quaternion.identity);
-        bullet.GetComponent<Bullet>().Initialize(fireDir);
+
+        //GameObject bullet = Instantiate(bulletPrefab, (transform.position+ new Vector3(0,1f,0)) + fireDir, Quaternion.identity);
+        //bullet.GetComponent<Bullet>().Initialize(fireDir);
+
+        var bullet = MANAGER.POOL.Pooling_OBJ("Projectile").Get((value) =>
+        {
+            Vector3 pos = transform.position + new Vector3(0, 1.0f, 0.0f) + fireDir*1.0f;
+            value.transform.position = pos;
+            value.GetComponent<Bullet>().Initialize(fireDir);
+        });
   }
 }
