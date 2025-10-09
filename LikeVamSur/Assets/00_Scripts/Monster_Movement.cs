@@ -1,10 +1,10 @@
 using System.Collections;
 using UnityEngine;
 
-public class Monster_Movement : MonoBehaviour
+public class Monster_Movement : MONSTER
 {
 
-    public Transform target;
+    //public Transform target;
     public float speed = 3.0f;
 
     private Rigidbody rb;
@@ -23,12 +23,12 @@ public class Monster_Movement : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
 
-    public void Initialize(Transform player)
+    public override void Initialize(Transform player)
     {
-        target = player;
+        base.Initialize(player);
 
         Rotate(Direction(), false);
 
