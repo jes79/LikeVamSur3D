@@ -46,8 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ade863dd84c1d345b71dd6fb69f86f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HP: 0
+  MaxHP: 0
   target: {fileID: 0}
   monsterid: Skeleton_01
+  isDead: 0
   speed: 3
 --- !u!136 &1174110359354173497
 CapsuleCollider:

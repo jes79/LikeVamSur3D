@@ -28,7 +28,7 @@ public class Object_Pool : IPool
     public void Return(GameObject obj, Action<GameObject> action = null)
     {
         pool.Enqueue(obj);
-        obj.transform.parent = parentTransform;
+        obj.transform.SetParent(parentTransform);
         obj.SetActive(false);
         if(action != null)
         {

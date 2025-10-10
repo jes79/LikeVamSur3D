@@ -45,13 +45,16 @@ public class Bullet : MonoBehaviour
             //    transform.position,
             //    "10");
 
+            /*
             var damageFont = MANAGER.POOL.Pooling_OBJ("DamageFont").Get((value) =>
             {
                 value.GetComponent<DamageTMP>().Initialize(
                     Base_Canvas.instance.transform, 
                     transform.position, 
-                    "10");
+                    MANAGER.SESSION.Damage.ToString());
             });
+            */
+            other.gameObject.GetComponent<MONSTER>().GetDamage(MANAGER.SESSION.Damage);
 
 
             //Destroy(this.gameObject);

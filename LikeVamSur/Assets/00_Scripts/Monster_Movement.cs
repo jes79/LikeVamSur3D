@@ -10,7 +10,7 @@ public class Monster_Movement : MONSTER
     private Rigidbody rb;
     private Animator animator;
 
-    private bool isSpawned = false;
+    //private bool isSpawned = false;
 
 
     /*
@@ -33,7 +33,8 @@ public class Monster_Movement : MONSTER
         Rotate(Direction(), false);
 
 
-        StartCoroutine(SpawnStartCoroutine(transform.localScale));
+        //StartCoroutine(SpawnStartCoroutine(transform.localScale));
+        StartCoroutine(SpawnStartCoroutine(new Vector3(15f, 15f,15f)));
     }
 
     IEnumerator SpawnStartCoroutine(Vector3 scaleEnd)
@@ -60,6 +61,7 @@ public class Monster_Movement : MONSTER
 
     private void FixedUpdate()
     {
+        if (isDead) return;
         //if (target == null) return;
         if (!isSpawned) return;
          
