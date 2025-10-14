@@ -63,8 +63,44 @@ public class MONSTER : MonoBehaviour
                 () => MANAGER.POOL.m_pool_Dictionary["DeadEffect"].Return(deadEffect)));
             */
             MANAGER.POOL.m_pool_Dictionary["Monster"].Return(this.gameObject);
+
+            DropEXP(transform.position, Random.Range(1.0f, 5.0f));
+        }
+    }
+
+    private void DropEXP(Vector3 deathPostion, float exp = 1.0f)
+    {
+        float[] units = { 3.0f, 1.0f, 0.25f};
+
+        foreach(float unit in units)
+        {
+            while(exp >= unit)
+            {
+                exp -= unit;
+                OrbMake(deathPostion, unit);
+
+            }
+
+
         }
 
+        if (exp > 0.01f)
+        {
+            OrbMake(deathPostion, exp);
+        }
 
     }
+
+    private void OrbMake(Vector3 deathPosition, float exp)
+    {
+        Vector3 spawnPos = deathPosition + Utils_World.GetRandomCircleOffset(1.5f);
+        spawnPos.y += 0.5f;
+        var orb = MANAGER.POOL.Pooling_OBJ("Orb").Get((value) =>
+        {
+            //value.transform.position = spawnPos;
+            value.transform.position = transform.position;
+            value.GetComponent<Orb>().Initialize(exp, spawnPos);
+        });
+    }
+
 }

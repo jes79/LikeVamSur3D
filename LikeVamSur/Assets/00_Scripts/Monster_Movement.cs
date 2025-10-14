@@ -20,6 +20,7 @@ public class Monster_Movement : MONSTER
     }
     */
 
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
