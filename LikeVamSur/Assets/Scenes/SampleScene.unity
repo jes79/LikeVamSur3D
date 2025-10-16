@@ -320,6 +320,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b18e290713aed394a898f0c2f847b11a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 919132149140497301}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b18e290713aed394a898f0c2f847b11a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 919132149140497303}
   m_SourcePrefab: {fileID: 100100000, guid: b18e290713aed394a898f0c2f847b11a, type: 3}
 --- !u!1 &201764572
 GameObject:
@@ -3936,6 +3939,8 @@ MonoBehaviour:
   CurrentWave: 0
   Level: 0
   Damage: 15
+  magnetRadius: 3
+  Exp: 0
   GameTime: 0
   isGameOver: 0
 --- !u!1 &2099923657
@@ -3970,6 +3975,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afcf3e02630fb3b449ce5ab03b4caefc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EXPFill: {fileID: 612562380}
+  LevelText: {fileID: 783124454}
 --- !u!114 &2099923659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4168,6 +4175,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 8828356469919063270, guid: 1697eb95493636a4db511e5efadf22ae, type: 3}
+--- !u!114 &919132149140497303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149140497300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1af1c4d7f69461447af6845a85828533, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orbLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
