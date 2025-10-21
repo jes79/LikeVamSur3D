@@ -15,25 +15,46 @@ public class Base_Canvas : MonoBehaviour
     {
         EXPChange(0); //최초한번은 0으로 표시해 줘야지
         MANAGER.SESSION.onExpChanged += EXPChange;
+        MANAGER.SESSION.onMonsterCountChanged += M_CountText;
     }
 
     private void OnDestroy()
     {
         MANAGER.SESSION.onExpChanged -= EXPChange;
+        MANAGER.SESSION.onMonsterCountChanged -= M_CountText;
     }
 
     public Image EXPFill;
     public TextMeshProUGUI LevelText;
+    public TextMeshProUGUI monsterCountText;
+    public TextMeshProUGUI TimerText;
 
+    public GameObject CardObject;
+
+    private void Update()
+    {
+        TimerText.text = Utils_UI.FormatTime(MANAGER.SESSION.GameTime);
+    }
+
+    public void SelectCard()
+    {
+        CardObject.SetActive(true);
+    }
+
+    private void M_CountText(int value) => monsterCountText.text = value.ToString();  
     public void EXPChange(float exp)
     {
-        float expPercentage = exp / 100.0f;
+        //float expPercentage = exp / 100.0f;
+        float expPercentage = exp / MANAGER.SESSION.GetRequiredExp();   
+        
         EXPFill.fillAmount = expPercentage;
         LevelText.text =
             string.Format(
             "Lv.{0} <color=#FFFF00>{1:0.0}%</color>",
             (MANAGER.SESSION.Level + 1),
-            exp);
+            //exp
+            expPercentage * 100.0f
+            );
 
     }
 }

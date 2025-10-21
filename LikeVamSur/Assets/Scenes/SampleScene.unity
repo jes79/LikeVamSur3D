@@ -3939,6 +3939,7 @@ MonoBehaviour:
   CurrentWave: 0
   Level: 0
   Damage: 15
+  monsterCount: 0
   magnetRadius: 3
   Exp: 0
   GameTime: 0
@@ -3977,6 +3978,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EXPFill: {fileID: 612562380}
   LevelText: {fileID: 783124454}
+  monsterCountText: {fileID: 347024253}
+  TimerText: {fileID: 400862092}
+  CardObject: {fileID: 1023587010}
 --- !u!114 &2099923659
 MonoBehaviour:
   m_ObjectHideFlags: 0
