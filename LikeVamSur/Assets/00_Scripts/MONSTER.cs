@@ -9,7 +9,8 @@ public class MONSTER : MonoBehaviour
     public string monsterid;
 
     public bool isDead = false;
-    protected bool isSpawned = false;
+    //protected bool isSpawned = false;
+    public bool isSpawned = false;
 
     private IFactory<MONSTER> factory;
 
@@ -36,7 +37,7 @@ public class MONSTER : MonoBehaviour
         var damageFont = MANAGER.POOL.Pooling_OBJ("DamageFont").Get((value) =>
         {
             value.GetComponent<DamageTMP>().Initialize(
-        Base_Canvas.instance.transform,
+        Base_Canvas.instance.HOLDERLAYER,
         transform.position,
         dmg.ToString()); // MANAGER.SESSION.Damage -> dmg
         });

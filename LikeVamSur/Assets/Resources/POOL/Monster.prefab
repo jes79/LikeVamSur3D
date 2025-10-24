@@ -51,6 +51,7 @@ MonoBehaviour:
   target: {fileID: 0}
   monsterid: Skeleton_01
   isDead: 0
+  isSpawned: 0
   speed: 3
 --- !u!136 &1174110359354173497
 CapsuleCollider:
