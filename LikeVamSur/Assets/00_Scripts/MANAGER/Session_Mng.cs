@@ -1,12 +1,18 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 
 public delegate void OnExpChanged(float exp);
 public delegate void OnMonsterCountChanged(int value);
+public delegate void OnSelectedCard();
+
 public class Session_Mng : MonoBehaviour
 {
     public OnExpChanged onExpChanged;
     public OnMonsterCountChanged onMonsterCountChanged;
+    public OnSelectedCard onSelectedCard;
+
+    public Dictionary<string , SelectCard> SelectedCards =  new Dictionary<string , SelectCard>(); 
 
     public int CurrentWave;
     public int Level;
@@ -23,6 +29,26 @@ public class Session_Mng : MonoBehaviour
     private void Update()
     {
         GameTime += Time.unscaledDeltaTime;//Time.timeScale = 0; 인상태에서도 작동됨.
+    }
+
+    public void SelectedCard(CardDB db)
+    {
+        //CardSelector 에 GetCard(CardDB db)에서 해준걸 그냥 여기서 처리해 주겠음.
+        if (SelectedCards.ContainsKey(db.id))
+        {
+            var data = SelectedCards[db.id];
+            data.Level++;
+        }
+        else
+        {
+            var selected = new SelectCard();
+            selected.db = db;
+            selected.Level = 1;
+            SelectedCards.Add(db.id, selected);
+        }
+
+        Debug.Log(db.id + "카드가 선택되었습니다. \nLevel : " + SelectedCards[db.id].Level);
+        onSelectedCard?.Invoke();
     }
     public void AddMonster()
     {

@@ -15,9 +15,11 @@ public class CardSelector : MonoBehaviour
     {
 
         animator.Play("Selector_Open");
+
+        var Cards = MANAGER.DB.GetRandomCardSet();
         for(int i = 0; i < cards.Length; i++) 
         {
-            cards[i].Initialize();
+            cards[i].Initialize(Cards[i]);
         }
     }
 
@@ -28,6 +30,8 @@ public class CardSelector : MonoBehaviour
             if(i == value)
             {
                 cards[i].SetAnimation("Card_Select");
+                //GetCard(cards[i].card);
+                MANAGER.SESSION.SelectedCard(cards[i].card);
             }
             else
             {
@@ -37,6 +41,13 @@ public class CardSelector : MonoBehaviour
         }
         StartCoroutine(GameStartCoroutine());
     }
+
+    /*(미사용 불필요)
+    public void GetCard(CardDB db)
+    {
+        //
+    }
+    */
 
 
     IEnumerator GameStartCoroutine()
