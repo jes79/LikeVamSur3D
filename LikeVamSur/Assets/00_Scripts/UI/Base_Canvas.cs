@@ -1,10 +1,19 @@
+using NUnit.Framework;
+using NUnit.Framework.Constraints;
+using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Base_Canvas : MonoBehaviour
 {
     public static Base_Canvas instance  = null;
+
+    public SkillFrame frame;
+    public Transform activeFrameContent;
+    public Transform passiveFrameContent;
+    List<GameObject> SkillFrameGorvage = new List<GameObject>();
 
     private void Awake()
     {
@@ -36,6 +45,8 @@ public class Base_Canvas : MonoBehaviour
     private void Update()
     {
         TimerText.text = Utils_UI.FormatTime(MANAGER.SESSION.GameTime);
+
+
     }
 
     public void SelectCard()
@@ -60,4 +71,30 @@ public class Base_Canvas : MonoBehaviour
             );
 
     }
+
+    public void SetSkillFrame()
+    {
+        if(SkillFrameGorvage.Count > 0)
+        {
+            for(int i = 0;i<SkillFrameGorvage.Count; i++)
+            {
+                Destroy(SkillFrameGorvage[i]);
+            }
+
+            SkillFrameGorvage.Clear();
+        }
+
+        foreach(var data in MANAGER.SESSION.SelectedCards)
+        {
+            var go = Instantiate(frame,
+                data.Value.db.state == CardState.Active ?
+                activeFrameContent :
+                passiveFrameContent);
+
+            go.Initialize(data.Value);
+            SkillFrameGorvage.Add(go.gameObject);
+        }
+    }
+
+
 }

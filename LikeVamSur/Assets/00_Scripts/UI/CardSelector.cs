@@ -32,6 +32,7 @@ public class CardSelector : MonoBehaviour
                 cards[i].SetAnimation("Card_Select");
                 //GetCard(cards[i].card);
                 MANAGER.SESSION.SelectedCard(cards[i].card);
+
             }
             else
             {
@@ -55,5 +56,7 @@ public class CardSelector : MonoBehaviour
         yield return new WaitForSecondsRealtime(1.0f);
         animator.Play("Selector_Close");
         Time.timeScale = 1.0f;
+        //test
+        Base_Canvas.instance.SetSkillFrame();
     }
 }

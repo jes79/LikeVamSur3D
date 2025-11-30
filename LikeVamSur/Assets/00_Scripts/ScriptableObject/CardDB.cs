@@ -28,4 +28,8 @@ public class CardDB : ScriptableObject
     [Space(20f)]
     [Header("데미지")]
     public float DamagePercentage;
+
+    //일단 추가
+    public float baseCooldown;
+    public float cooldownPerLevel;
 }
