@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class MONSTER : MonoBehaviour
 {
-    public int HP;
-    public int MaxHP;
+    public float HP;
+    public float MaxHP;
 
     public Transform target;
     public string monsterid;
@@ -30,7 +30,7 @@ public class MONSTER : MonoBehaviour
         factory.Build(this, monsterid);
     }
 
-    public void GetDamage(int dmg)
+    public void GetDamage(float dmg)
     {
         HP -= dmg;
 
@@ -39,7 +39,7 @@ public class MONSTER : MonoBehaviour
             value.GetComponent<DamageTMP>().Initialize(
         Base_Canvas.instance.HOLDERLAYER,
         transform.position,
-        dmg.ToString()); // MANAGER.SESSION.Damage -> dmg
+        ((int)dmg).ToString()); // MANAGER.SESSION.Damage -> dmg
         });
 
         if (HP <= 0)

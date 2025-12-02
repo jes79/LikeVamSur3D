@@ -47,6 +47,7 @@ public class Session_Mng : MonoBehaviour
             SelectedCards.Add(db.id, selected);
         }
 
+        MANAGER.SKILL.RegisterSkill(db, SelectedCards[db.id].Level);
         Debug.Log(db.id + "카드가 선택되었습니다. \nLevel : " + SelectedCards[db.id].Level);
         onSelectedCard?.Invoke();
 

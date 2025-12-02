@@ -39,7 +39,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         card = cardDB;
 
         Title.text = card.id;
-        Description.text = string.Format(card.description, card.DamagePercentage);
+        //Description.text = string.Format(card.description, card.DamagePercentage);
+        Description.text = string.Format(card.description, card.baseDamage);
         IconImage.sprite = MANAGER.DB.GetSprite(card.name);
         OutlineImage.color = card.state == CardState.Active ? colors[0] : colors[1];    
         animator.Rebind(); 

@@ -18,6 +18,7 @@ public enum CardState
 public class CardDB : ScriptableObject
 {
     public string id;
+    public string className;
 
     [Space(20f)]
     [TextArea(1, 10)]
@@ -26,10 +27,10 @@ public class CardDB : ScriptableObject
 
     
     [Space(20f)]
-    [Header("데미지")]
-    public float DamagePercentage;
-
-    //일단 추가
+    [Header("스킬 데이터")]
+//  public float DamagePercentage;
     public float baseCooldown;
+    public float baseDamage;
     public float cooldownPerLevel;
+    public float damagePerLevel;
 }
