@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     public float lifetiem = 5.0f;
     public GameObject ExplosionParticle;
 
-    public GameObject DamageObject;
+   // public GameObject DamageObject;
 
     private Vector3 direction;
 
