@@ -68,15 +68,15 @@ public class MONSTER : MonoBehaviour
             */
             MANAGER.POOL.m_pool_Dictionary["Monster"].Return(this.gameObject);
 
-            //DropEXP(transform.position, Random.Range(1.0f, 5.0f));
-            DropEXP(transform.position, Random.Range(10.0f, 50.0f));
+            DropEXP(transform.position, Random.Range(1.0f, 5.0f));
+            //DropEXP(transform.position, Random.Range(10.0f, 50.0f));
         }
     }
 
-    private void DropEXP(Vector3 deathPostion, float exp = 1.0f)
+    private void DropEXP(Vector3 deathPostion, float exp = 1f)
     {
-        //float[] units = { 3.0f, 1.0f, 0.25f};
-        float[] units = { 50.0f, 30.0f, 10.0f };
+        float[] units = { 3.0f, 1.0f, 0.25f};
+        //float[] units = { 50.0f, 30.0f, 10.0f };
 
         foreach (float unit in units)
         {

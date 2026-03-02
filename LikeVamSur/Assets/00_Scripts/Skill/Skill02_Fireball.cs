@@ -19,20 +19,27 @@ public class Skill02_Fireball : SkillBase
     protected override void Fire()
     {
         float spread = 45f;
-        float step = spread /(count - 1);
-        float start = -spread / 2f;
 
-        for(int i = 0; i< count; i++)
+        if(count == 1)
         {
-            float angle = start + (step * i);
-            Vector3 dir = Quaternion.Euler(0, angle, 0)*Player.instance.transform.forward;
-
-            var bullet = MANAGER.POOL.Pooling_OBJ("Fireball").Get((value) =>
-            {
-                value.transform.position = Player.instance.transform.position;
-                value.transform.rotation = Quaternion.LookRotation(dir);
-                value.GetComponent<Bullet>().Initialize(dir);
-            });
+            Vector3 dir = Player.instance.transform.forward;
+            MakeBullet(dir);
         }
+        else
+        {
+            float step = spread / (count - 1);//count가 1이면 분모가 0이 되서 오류
+            float start = -spread / 2f;
+
+            for (int i = 0; i < count; i++)
+            {
+                float angle = start + (step * i);
+                Vector3 dir = Quaternion.Euler(0, angle, 0) * Player.instance.transform.forward;
+
+                MakeBullet(dir);
+            }
+        }
+          
     }
+
+
 }

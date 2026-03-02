@@ -5,7 +5,7 @@ public class CardSelector : MonoBehaviour
 {
     public Card[] cards;  
     Animator animator;
-
+    bool isSelected = false;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -13,7 +13,7 @@ public class CardSelector : MonoBehaviour
 
     public void Initialize()
     {
-
+        isSelected = false;
         animator.Play("Selector_Open");
 
         var Cards = MANAGER.DB.GetRandomCardSet();
@@ -25,9 +25,12 @@ public class CardSelector : MonoBehaviour
 
     public void SelectCard(int value)
     {
-        for(int i = 0; i < cards.Length; i++)
+        if(isSelected) return;
+        isSelected = true;
+        for (int i = 0; i < cards.Length; i++)
         {
-            if(i == value)
+            
+            if (i == value)
             {
                 cards[i].SetAnimation("Card_Select");
                 //GetCard(cards[i].card);

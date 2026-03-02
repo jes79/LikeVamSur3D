@@ -48,7 +48,21 @@ public abstract class SkillBase : MonoBehaviour
         float finalDamge = baseDamage * (percent / 100f);
         return finalDamge;
     }
+
+    protected void MakeBullet(Vector3 dir)
+    {
+       
+        var bullet = MANAGER.POOL.Pooling_OBJ("Fireball").Get((value) =>
+        {
+            value.transform.position = Player.instance.transform.position + (Vector3.up*0.5f);
+            value.transform.rotation = Quaternion.LookRotation(dir);
+            value.GetComponent<Bullet>().Initialize(dir);
+        });
+    }
+
     protected abstract void OnInitalize();
     protected abstract void OnLevelUp();   
     protected abstract void Fire();
+
+
 }

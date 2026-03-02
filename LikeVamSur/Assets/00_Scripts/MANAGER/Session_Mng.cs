@@ -71,7 +71,7 @@ public class Session_Mng : MonoBehaviour
         {
             Exp = 0;
             Level++;
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
             Base_Canvas.instance.SelectCard();
         }
 

@@ -18,7 +18,7 @@ public class Skill01_Lightning : SkillBase
         //Transform targetPoint = targets[Random.Range(0, targets.Count)];
         for (int i = 0; i < level; i++)
         {
-            if (targets.Count < 0) return;
+            if (targets.Count <= 0) return;
             Transform targetPoint = targets[Random.Range(0, targets.Count)];
             var lightning = MANAGER.POOL.Pooling_OBJ("Lightning").Get((value) =>
             {

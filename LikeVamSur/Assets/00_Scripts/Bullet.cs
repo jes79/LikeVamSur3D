@@ -1,65 +1,73 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public string BulletName;
     public float speed = 10.0f;
     public float lifetiem = 5.0f;
-    public GameObject ExplosionParticle;
-
-   // public GameObject DamageObject;
-
+    public float delay;
     private Vector3 direction;
 
-
+    bool isHit = false;
+    [SerializeField] private ParticleSystem BulletParticle;
+    [SerializeField] private GameObject ExplosionParticle;
+    
 
     public void Initialize(Vector3 dir)
     {
+        isHit = false;
         direction = dir;
         //Destroy(this.gameObject, lifetiem);
-
+        BulletParticle.gameObject.SetActive(true);
+        BulletParticle.Clear(); //기존 입자 제거
+        BulletParticle.Play(); //다시 실행
+        ExplosionParticle.SetActive(false);
         StartCoroutine(DestroyCoroutine(5));
     }
 
     IEnumerator DestroyCoroutine(float timer)
     {
         yield return new WaitForSeconds(timer);
-        MANAGER.POOL.m_pool_Dictionary["Projectile"].Return(this.gameObject);
+        MANAGER.POOL.m_pool_Dictionary[BulletName].Return(this.gameObject);
     }
 
     void Update()
     {
+        if (isHit) return;
         transform.position += direction * speed * Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (isHit) return;
         if (other.gameObject.layer == LayerMask.NameToLayer("Monster"))
         {
-            Instantiate(ExplosionParticle, transform.position, Quaternion.identity);
+           isHit = true;
+            BulletParticle.gameObject.SetActive(false );   
+            ExplosionParticle.SetActive(true);
 
-
-            //GameObject damageFont = Instantiate(DamageObject);
-            //damageFont.GetComponent<DamageTMP>().Initialize(
-            //    Base_Canvas.instance.transform,
-            //    transform.position,
-            //    "10");
-
-            /*
-            var damageFont = MANAGER.POOL.Pooling_OBJ("DamageFont").Get((value) =>
-            {
-                value.GetComponent<DamageTMP>().Initialize(
-                    Base_Canvas.instance.transform, 
-                    transform.position, 
-                    MANAGER.SESSION.Damage.ToString());
-            });
-            */
+            
             other.gameObject.GetComponent<MONSTER>().GetDamage(MANAGER.SESSION.Damage);
 
 
-            //Destroy(this.gameObject);
-            MANAGER.POOL.m_pool_Dictionary["Projectile"].Return(this.gameObject);
 
+            StopAllCoroutines();
+            StartCoroutine(WaitEffectAndReturn(delay));
         }
+      
+    }
+    IEnumerator WaitEffectAndReturn(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        ReturnBullet();
+    }
+
+    private void ReturnBullet()
+    {
+        ExplosionParticle.SetActive(false); 
+        StopAllCoroutines();
+        MANAGER.POOL.m_pool_Dictionary[BulletName].Return(this.gameObject);
     }
 }

@@ -23,8 +23,11 @@ public class Base_Canvas : MonoBehaviour
     private void Start()
     {
         EXPChange(0); //최초한번은 0으로 표시해 줘야지
+        
         MANAGER.SESSION.onExpChanged += EXPChange;
         MANAGER.SESSION.onMonsterCountChanged += M_CountText;
+
+        SelectCard();
     }
 
     private void OnDestroy()
@@ -51,6 +54,7 @@ public class Base_Canvas : MonoBehaviour
 
     public void SelectCard()
     {
+        Time.timeScale = 0;
         //CardObject.SetActive(true);
         CardObject.Initialize();
     }
