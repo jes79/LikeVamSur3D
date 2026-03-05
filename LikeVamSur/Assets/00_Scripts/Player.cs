@@ -24,6 +24,21 @@ public class Player : MonoBehaviour
         Vector3 dirToMonster = (target.position - transform.position).normalized;
         return dirToMonster;
     }
+
+    public List<Transform> GetCollidersHitMonsters(float radius)
+    {
+        Collider[] hits = Physics.OverlapSphere(transform.position, radius, monsterLayer);
+        List<Transform> targetLists = new List<Transform>();
+
+        foreach (Collider col in hits)
+        {
+            if (col.GetComponent<MONSTER>().isSpawned)
+            {
+                targetLists.Add(col.transform);
+            }
+        }
+        return targetLists;
+    }
     public Transform GetNearestMonster()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, detectionRadius, monsterLayer);
@@ -43,7 +58,7 @@ public class Player : MonoBehaviour
                     nearest = col.transform;
                 }
             }
-        }//
+        }
 
         return nearest;
 

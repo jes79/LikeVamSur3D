@@ -9,10 +9,14 @@ public abstract class SkillBase : MonoBehaviour
     public float cooldown;
     public float timer;
     public int level;
-    protected List<Transform> targets
+
+    protected Transform target { get { return Player.instance.GetNearestMonster(); } }
+    protected List<Transform> targetLists(float range)
     {
-        get {  return Player.instance.targets; }
+        return Player.instance.GetCollidersHitMonsters(range);
     }
+
+
     public void Initalize(CardDB data, int level)
     {
         cardData = data;
