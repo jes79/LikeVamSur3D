@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52184912d9b69404eaa68865a385ab7b, type: 3}
+  m_Name: Active_05
+  m_EditorClassIdentifier: 
+  id: "\uC720\uC131"
+  className: Skill05_Meteor
+  description: "\uD50C\uB808\uC774\uC5B4 \uC8FC\uBCC0 \uBB34\uC791\uC704 \uC704\uCE58\uC5D0
+    \uAC15\uB825\uD55C \uC720\uC131\uC744 \uB5A8\uC5B4\uD2B8\uB9BD\uB2C8\uB2E4.\n\uC720\uC131\uC740
+    \uCDA9\uB3D9\uD55C \uC9C0\uC810 \uC8FC\uBCC0\uC758 \uBAAC\uC2A4\uD130\uC5D0\uAC8C
+    <color=#FFFF00>{0}</color>\uC758 \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4."
+  state: 0
+  baseCooldown: 3
+  baseDamage: 180
+  cooldownPerLevel: 0
+  damagePerLevel: 30

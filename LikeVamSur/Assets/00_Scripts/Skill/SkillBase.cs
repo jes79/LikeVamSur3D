@@ -64,6 +64,29 @@ public abstract class SkillBase : MonoBehaviour
         });
     }
 
+    protected Vector3 RandomPos(float radius)
+    {
+        Vector2 rand = Random.insideUnitCircle*radius;
+        Vector3 center = Player.instance.transform.position;
+
+        return new Vector3(center.x + rand.x , center.y, center.z+ rand.y);
+    }
+
+    protected List<MONSTER> RangeMonsterLists(Vector3 randomPos,float radius)
+    {
+        Collider[] hits = Physics.OverlapSphere(randomPos,radius, 1 << LayerMask.NameToLayer("Monster"));
+        List<MONSTER> monsters = new List<MONSTER>();
+        foreach(var col in hits)
+        {
+            if(col.TryGetComponent(out MONSTER m ) && m.isSpawned)
+            {
+                monsters.Add(m);
+            }
+        }
+
+        return monsters;    
+    }
+
     protected abstract void OnInitalize();
     protected abstract void OnLevelUp();   
     protected abstract void Fire();
