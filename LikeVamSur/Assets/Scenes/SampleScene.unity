@@ -5669,6 +5669,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1878036323}
   - component: {fileID: 1878036324}
+  - component: {fileID: 1878036325}
   m_Layer: 0
   m_Name: '##SKILL##'
   m_TagString: Untagged
@@ -5703,6 +5704,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32353b0d00b48f14f9e63c81b7f5fe42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1878036325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878036322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abe5b55dd15de204ba8aaf193834f455, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PassiveMng
 --- !u!1 &1897735570
 GameObject:
   m_ObjectHideFlags: 0
@@ -6050,10 +6063,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentWave: 0
   Level: 0
-  Damage: 15
   monsterCount: 0
-  magnetRadius: 3
   Exp: 0
+  Damage: 10
+  Hp: 50
+  magnetRadius: 3
+  expPlusPercentage: 0
+  CriticalPercentage: 0
+  CriticalDamage: 0
   GameTime: 0
   isGameOver: 0
 --- !u!1 &2099923657

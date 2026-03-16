@@ -5,19 +5,33 @@ using UnityEngine;
 public class Skill_Mng : MonoBehaviour
 {
     private List<SkillBase> activeSkills = new List<SkillBase>();
+    private PassiveMng PASSIVE;
+
+    private void Start()
+    {
+        PASSIVE = GetComponent<PassiveMng>();
+    }
 
     public void RegisterSkill(CardDB db, int level)
     {
-        SkillBase existing = activeSkills.Find(x => x.skillid == db.id);
-        if(existing != null)
+        if(db.state == CardState.Active)
         {
-            existing.LevelUp(level);
-            return;
+            SkillBase existing = activeSkills.Find(x => x.skillid == db.id);
+            if (existing != null)
+            {
+                existing.LevelUp(level);
+                return;
+            }
+
+            SkillBase skill = CreateSkillFromDB(db);
+            skill.Initalize(db, level);
+            activeSkills.Add(skill);
+        }
+        else
+        {
+            PASSIVE.SetPassiveCard(db, level);
         }
 
-        SkillBase skill = CreateSkillFromDB(db);
-        skill.Initalize(db, level);
-        activeSkills.Add(skill);
     }
 
     SkillBase CreateSkillFromDB(CardDB db)

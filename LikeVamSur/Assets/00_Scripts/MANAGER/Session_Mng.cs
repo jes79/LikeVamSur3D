@@ -16,13 +16,30 @@ public class Session_Mng : MonoBehaviour
 
     public int CurrentWave;
     public int Level;
-    public int Damage;
-    public int monsterCount;
 
-    public float magnetRadius = 3.0f;
+    public int monsterCount;
     public float Exp;
 
     public float GameTime;
+
+    [Space(20f)]
+    [Header("## Player Data ##")]
+    public float Damage;
+    public float HP;
+    public float magnetRadius;
+
+    [Space(20f)]
+    [Header("## Player Plus Data ##")]
+    public float DamagePercentage;
+    public float HPPercentage;
+    public float magnetRadiusPercentage;
+    public float expPlusPercentage;
+    public float CriticalPercentage;
+    public float CriticalDamage;
+ 
+
+
+
 
     public bool isGameOver = false;
 

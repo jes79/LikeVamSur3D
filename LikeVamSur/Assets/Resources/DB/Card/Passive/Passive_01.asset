@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Passive_01
   m_EditorClassIdentifier: 
   id: "\uC790\uC11D"
-  description: "\uC624\uBE0C \uD68D\uB4DD \uBC18\uACBD\uC744 \uC99D\uAC00\uC2DC\uD0B5\uB2C8\uB2E4."
+  className: 
+  description: "\uC624\uBE0C \uD68D\uB4DD \uBC18\uACBD\uC744 \uC99D\uAC00\uD569\uB2C8\uB2E4."
   state: 1
-  DamagePercentage: 0
+  baseCooldown: 0
+  baseDamage: 50
+  cooldownPerLevel: 0
+  damagePerLevel: 30
