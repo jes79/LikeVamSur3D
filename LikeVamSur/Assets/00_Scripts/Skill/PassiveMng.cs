@@ -17,32 +17,32 @@ public class PassiveMng : MonoBehaviour
     public void PASSIVE01(CardDB db, int level)
     {
         
-        session.magnetRadiusPercentage = Plus(db, level);
+        session.magnetRadiusPercent = Plus(db, level);
     }
 
     public void PASSIVE02(CardDB db, int level)
     {
-        session.DamagePercentage =  Plus(db, level);
+        session.DamagePercent =  Plus(db, level);
     }
 
     public void PASSIVE03(CardDB db, int level)
     {
-        session.expPlusPercentage = Plus(db, level);
+        session.expPlusPercent = Plus(db, level);
     }
 
     public void PASSIVE04(CardDB db, int level)
     {
-        session.CriticalPercentage = Plus(db, level);
+        session.CriticalPercent = Plus(db, level);
     }
 
     public void PASSIVE05(CardDB db, int level)
     {
-        session.CriticalDamage = Plus(db, level);
+        session.CriticalDamagePercent = Plus(db, level);
     }
 
     public void PASSIVE06(CardDB db, int level)
     {
-        session.HPPercentage = Plus(db, level);
+        session.HPPercent = Plus(db, level);
     }
 
     public void SetPassiveCard(CardDB db, int level)

@@ -30,12 +30,12 @@ public class Session_Mng : MonoBehaviour
 
     [Space(20f)]
     [Header("## Player Plus Data ##")]
-    public float DamagePercentage;
-    public float HPPercentage;
-    public float magnetRadiusPercentage;
-    public float expPlusPercentage;
-    public float CriticalPercentage;
-    public float CriticalDamage;
+    public float DamagePercent;
+    public float HPPercent;
+    public float magnetRadiusPercent;
+    public float expPlusPercent;
+    public float CriticalPercent;
+    public float CriticalDamagePercent;
  
 
 
@@ -83,6 +83,7 @@ public class Session_Mng : MonoBehaviour
 
     public void AddExp(float exp)
     {
+        float realExp = exp + exp * (expPlusPercent / 100);
         Exp += exp;
         if(Exp >= GetRequiredExp())
         {

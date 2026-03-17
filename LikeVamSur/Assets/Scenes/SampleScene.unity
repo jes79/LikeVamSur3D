@@ -6065,13 +6065,16 @@ MonoBehaviour:
   Level: 0
   monsterCount: 0
   Exp: 0
-  Damage: 10
-  Hp: 50
-  magnetRadius: 3
-  expPlusPercentage: 0
-  CriticalPercentage: 0
-  CriticalDamage: 0
   GameTime: 0
+  Damage: 10
+  HP: 50
+  magnetRadius: 3
+  DamagePercent: 0
+  HPPercent: 0
+  magnetRadiusPercent: 0
+  expPlusPercent: 0
+  CriticalPercent: 0
+  CriticalDamagePercent: 0
   isGameOver: 0
 --- !u!1 &2099923657
 GameObject:

@@ -47,7 +47,9 @@ public abstract class SkillBase : MonoBehaviour
     protected float Damage()
     {
         float percent = cardData.baseDamage + cardData.damagePerLevel * (level-1);
-        float baseDamage = MANAGER.SESSION.Damage;
+        //float baseDamage = MANAGER.SESSION.Damage;
+        float baseDamage = MANAGER.SESSION.Damage 
+                          + MANAGER.SESSION.Damage*(MANAGER.SESSION.DamagePercent/100) ;
 
         float finalDamge = baseDamage * (percent / 100f);
         return finalDamge;
