@@ -50,8 +50,8 @@ public abstract class SkillBase : MonoBehaviour
         //float baseDamage = MANAGER.SESSION.Damage;
         float baseDamage = MANAGER.SESSION.Damage 
                           + MANAGER.SESSION.Damage*(MANAGER.SESSION.DamagePercent/100) ;
-
-        float finalDamge = baseDamage * (percent / 100f);
+        // 10 + 10(60/100) -> 10 + 6 -> 16 
+        float finalDamge = baseDamage * (percent / 100f); //16( 60*/100)
         return finalDamge;
     }
 

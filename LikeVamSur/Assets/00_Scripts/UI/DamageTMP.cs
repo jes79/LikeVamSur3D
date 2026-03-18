@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DamageTMP : MonoBehaviour
 {
+    GameObject Critical;
     private TextMeshProUGUI m_Text;
     private RectTransform rectTransform;
 
@@ -16,13 +17,15 @@ public class DamageTMP : MonoBehaviour
  
     private void Awake()
     {
-        m_Text = GetComponent<TextMeshProUGUI>();
+        Critical = transform.Find("Critical").gameObject;
+        m_Text = GetComponentInChildren<TextMeshProUGUI>();
         rectTransform = GetComponent<RectTransform>();
     }
 
 
-    public void Initialize(Transform parent, Vector3 pos, string temp)
+    public void Initialize(Transform parent, Vector3 pos, string temp, bool critical = false)
     {
+        Critical.SetActive(critical);
         transform.SetParent(parent);
         m_Text.text = temp; 
 
@@ -50,6 +53,7 @@ public class DamageTMP : MonoBehaviour
         }
 
         //Destroy(gameObject);
+
         MANAGER.POOL.m_pool_Dictionary["DamageFont"].Return(this.gameObject);
     }
    

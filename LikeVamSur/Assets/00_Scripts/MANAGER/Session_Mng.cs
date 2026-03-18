@@ -122,4 +122,17 @@ public class Session_Mng : MonoBehaviour
         }
 
     }
+
+    public bool GetCritical()
+    {
+        float RandomValue = Random.value * 100f;
+        if(RandomValue <= CriticalPercent)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

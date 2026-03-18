@@ -48,10 +48,9 @@ public class Bullet : MonoBehaviour
             BulletParticle.gameObject.SetActive(false );   
             ExplosionParticle.SetActive(true);
 
-            
+
             other.gameObject.GetComponent<MONSTER>().GetDamage(MANAGER.SESSION.Damage);
-
-
+            
 
             StopAllCoroutines();
             StartCoroutine(WaitEffectAndReturn(delay));
