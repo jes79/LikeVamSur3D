@@ -27,7 +27,7 @@ public class Base_Canvas : MonoBehaviour
         MANAGER.SESSION.onExpChanged += EXPChange;
         MANAGER.SESSION.onMonsterCountChanged += M_CountText;
 
-        SelectCard();
+        SelectCard(true);
     }
 
     private void OnDestroy()
@@ -52,11 +52,11 @@ public class Base_Canvas : MonoBehaviour
 
     }
 
-    public void SelectCard()
+    public void SelectCard(bool AllActive = false)
     {
         Time.timeScale = 0;
         //CardObject.SetActive(true);
-        CardObject.Initialize();
+        CardObject.Initialize(AllActive);
     }
 
     private void M_CountText(int value) => monsterCountText.text = value.ToString();  
