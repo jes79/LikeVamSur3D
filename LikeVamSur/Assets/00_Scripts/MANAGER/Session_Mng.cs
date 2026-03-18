@@ -25,11 +25,13 @@ public class Session_Mng : MonoBehaviour
 
     public float GameTime;
 
+    public float baseMaxHP;
+
     [Space(20f)]
     [Header("## Player Data ##")]
     public float Damage;
     public float HP;
-    public float MaxHP;
+    public float MaxHP => baseMaxHP*(1f + HPPercent/100f);
     public float magnetRadius;
 
     [Space(20f)]
@@ -50,13 +52,25 @@ public class Session_Mng : MonoBehaviour
 
     private void Start()
     {
-        MaxHP = HP;
+        //MaxHP = HP;
+        baseMaxHP = HP;
+
         Base_Canvas.instance.HPChanged(HP);
 
     }
     private void Update()
     {
         GameTime += Time.unscaledDeltaTime;//Time.timeScale = 0; 인상태에서도 작동됨.
+    }
+
+    public void RefreshHpbyPercent(float oldMaxHP)
+    {
+        //비율로 증가하게. 100 : 100 = 120 : 120
+        //90 : 100 = x : 120 -> 100x = 120*90 -> x = (120*90)/100 -> x = 108
+        float ratio = HP / oldMaxHP; // 90/100 - > 0.9
+        HP = MaxHP * ratio; //120*0.9 = 108  
+
+        onHpChanged?.Invoke(HP);
     }
 
     public void SelectedCard(CardDB db)

@@ -14,6 +14,8 @@ public class PassiveMng : MonoBehaviour
         return  (db.baseDamage + db.damagePerLevel * (level - 1));
     }
 
+
+
     public void PASSIVE01(CardDB db, int level)
     {
         
@@ -42,7 +44,9 @@ public class PassiveMng : MonoBehaviour
 
     public void PASSIVE06(CardDB db, int level)
     {
+        float prevMax = session.MaxHP;
         session.HPPercent = Plus(db, level);
+        session.RefreshHpbyPercent(prevMax);
     }
 
     public void SetPassiveCard(CardDB db, int level)
