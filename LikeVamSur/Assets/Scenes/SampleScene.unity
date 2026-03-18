@@ -6642,9 +6642,9 @@ MonoBehaviour:
   monsterCount: 0
   Exp: 0
   GameTime: 0
+  baseMaxHP: 0
   Damage: 10
   HP: 50
-  MaxHP: 0
   magnetRadius: 3
   DamagePercent: 0
   HPPercent: 0
@@ -6894,6 +6894,8 @@ MonoBehaviour:
   - {fileID: 2022731666}
   - {fileID: 544076304}
   - {fileID: 1037233795}
+  volume: {fileID: 832575518}
+  vignteeColor: {r: 0.33962262, g: 0, b: 0, a: 0.8352941}
 --- !u!114 &919132149140497302
 MonoBehaviour:
   m_ObjectHideFlags: 0

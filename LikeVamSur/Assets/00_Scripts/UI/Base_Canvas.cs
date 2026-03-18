@@ -91,7 +91,7 @@ public class Base_Canvas : MonoBehaviour
     public void HPChanged(float hp)
     {
         float hpPercentage = hp / MANAGER.SESSION.MaxHP;
-        HPText.text = string.Format("{0}/{1}", hp, MANAGER.SESSION.MaxHP);
+        HPText.text = string.Format("{0:0}/{1:0}", hp, MANAGER.SESSION.MaxHP);
         HpFill.fillAmount = hpPercentage;
         
         if(HP_Coroutine != null)
