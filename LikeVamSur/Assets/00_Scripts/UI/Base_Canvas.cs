@@ -1,7 +1,8 @@
-using NUnit.Framework;
-using NUnit.Framework.Constraints;
+
 using System.Collections.Generic;
+using System.Collections;
 using TMPro;
+using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,7 +26,11 @@ public class Base_Canvas : MonoBehaviour
         EXPChange(0); //최초한번은 0으로 표시해 줘야지
         
         MANAGER.SESSION.onExpChanged += EXPChange;
+        MANAGER.SESSION.onHpChanged += HPChanged;
         MANAGER.SESSION.onMonsterCountChanged += M_CountText;
+
+        MANAGER.SESSION.onSelectedCard += SetSkillFrame;
+
 
         SelectCard(true);
     }
@@ -42,6 +47,13 @@ public class Base_Canvas : MonoBehaviour
     public TextMeshProUGUI LevelText;
     public TextMeshProUGUI monsterCountText;
     public TextMeshProUGUI TimerText;
+
+    Coroutine HP_Coroutine;
+
+    public Image HpFill;
+    public Image HPFillSeconds;
+    public TextMeshProUGUI HPText;
+
 
     //public GameObject CardObject;
     public CardSelector CardObject;
@@ -74,6 +86,36 @@ public class Base_Canvas : MonoBehaviour
             expPercentage * 100.0f
             );
 
+    }
+
+    public void HPChanged(float hp)
+    {
+        float hpPercentage = hp / MANAGER.SESSION.MaxHP;
+        HPText.text = string.Format("{0}/{1}", hp, MANAGER.SESSION.MaxHP);
+        HpFill.fillAmount = hpPercentage;
+        
+        if(HP_Coroutine != null)
+        {
+            StopCoroutine(HP_Coroutine);
+        }
+
+        HP_Coroutine = StartCoroutine(ScondFillAmount(HpFill.fillAmount));
+    }
+
+    IEnumerator ScondFillAmount(float percentage)
+    {
+        float speed = 2f;
+        float t = 0f;
+        while(HPFillSeconds.fillAmount > percentage)
+        {
+            t += Time.deltaTime*speed;
+            HPFillSeconds.fillAmount = Mathf.Lerp(
+                                        HPFillSeconds.fillAmount,
+                                        percentage, t);
+
+            yield return null;
+        }
+        HPFillSeconds.fillAmount = percentage;
     }
 
     public void SetSkillFrame()

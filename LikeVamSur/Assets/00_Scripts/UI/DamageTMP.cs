@@ -23,11 +23,12 @@ public class DamageTMP : MonoBehaviour
     }
 
 
-    public void Initialize(Transform parent, Vector3 pos, string temp, bool critical = false)
+    public void Initialize(Transform parent, Vector3 pos, string temp,Color color , bool critical = false)
     {
         Critical.SetActive(critical);
         transform.SetParent(parent);
         m_Text.text = temp; 
+        m_Text.color = color;
 
         Vector2 screenPosition = Camera.main.WorldToScreenPoint(pos);
         rectTransform.position = screenPosition;

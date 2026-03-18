@@ -18,7 +18,6 @@ public class SkillFrame : MonoBehaviour
         LevelText.text = "Lv." + selectCard.Level.ToString();
         if(selectCard.db.state == CardState.Active)
         {
-            SkillFill.gameObject.SetActive(true);
             StopAllCoroutines();
             StartCoroutine(CooltimeCoroutine(selectCard.db, selectCard.Level)); 
         }

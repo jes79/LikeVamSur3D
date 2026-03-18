@@ -5,12 +5,15 @@ using UnityEngine;
 public delegate void OnExpChanged(float exp);
 public delegate void OnMonsterCountChanged(int value);
 public delegate void OnSelectedCard();
+public delegate void OnHpChanged(float hp);
+
 
 public class Session_Mng : MonoBehaviour
 {
     public OnExpChanged onExpChanged;
     public OnMonsterCountChanged onMonsterCountChanged;
     public OnSelectedCard onSelectedCard;
+    public OnHpChanged onHpChanged;
 
     public Dictionary<string , SelectCard> SelectedCards =  new Dictionary<string , SelectCard>(); 
 
@@ -26,6 +29,7 @@ public class Session_Mng : MonoBehaviour
     [Header("## Player Data ##")]
     public float Damage;
     public float HP;
+    public float MaxHP;
     public float magnetRadius;
 
     [Space(20f)]
@@ -43,6 +47,13 @@ public class Session_Mng : MonoBehaviour
 
     public bool isGameOver = false;
 
+
+    private void Start()
+    {
+        MaxHP = HP;
+        Base_Canvas.instance.HPChanged(HP);
+
+    }
     private void Update()
     {
         GameTime += Time.unscaledDeltaTime;//Time.timeScale = 0; 인상태에서도 작동됨.
@@ -79,6 +90,12 @@ public class Session_Mng : MonoBehaviour
     {
         monsterCount--;
         onMonsterCountChanged?.Invoke(monsterCount);
+    }
+
+    public void GetDamage(float dmg)
+    {
+        HP -= dmg;
+        onHpChanged?.Invoke(HP);
     }
 
     public void AddExp(float exp)

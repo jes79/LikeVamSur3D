@@ -60,6 +60,6 @@ public class CardSelector : MonoBehaviour
         animator.Play("Selector_Close");
         Time.timeScale = 1.0f;
         //test
-        Base_Canvas.instance.SetSkillFrame();
+        //Base_Canvas.instance.SetSkillFrame();
     }
 }

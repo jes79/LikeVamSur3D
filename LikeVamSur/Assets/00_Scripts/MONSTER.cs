@@ -44,6 +44,7 @@ public class MONSTER : MonoBehaviour
             Base_Canvas.instance.HOLDERLAYER,
             transform.position,
             ((int)realDmg).ToString(),
+            Color.white,
             critical
             ); // MANAGER.SESSION.Damage -> dmg
         });
