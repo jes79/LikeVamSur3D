@@ -26,12 +26,18 @@ public class Session_Mng : MonoBehaviour
     public float GameTime;
 
     public float baseMaxHP;
+<<<<<<< HEAD
     public float baseDamage;
+=======
+>>>>>>> def53b9079a1719a102236a5f6286b0906b1348a
 
     [Space(20f)]
     [Header("## Player Data ##")]
     public float HP;
+<<<<<<< HEAD
     public float Damage => baseDamage * (1f + DamagePercent / 100f);
+=======
+>>>>>>> def53b9079a1719a102236a5f6286b0906b1348a
     public float MaxHP => baseMaxHP*(1f + HPPercent/100f);
     public float magnetRadius;
 
