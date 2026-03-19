@@ -48,10 +48,11 @@ public abstract class SkillBase : MonoBehaviour
     {
         float percent = cardData.baseDamage + cardData.damagePerLevel * (level-1);
         //float baseDamage = MANAGER.SESSION.Damage;
-        float baseDamage = MANAGER.SESSION.Damage 
-                          + MANAGER.SESSION.Damage*(MANAGER.SESSION.DamagePercent/100) ;
+        //float baseDamage = MANAGER.SESSION.Damage + MANAGER.SESSION.Damage*(MANAGER.SESSION.DamagePercent/100) ;
+
         // 10 + 10(60/100) -> 10 + 6 -> 16 
-        float finalDamge = baseDamage * (percent / 100f); //16( 60*/100)
+        //float finalDamge = baseDamage * (percent / 100f); //16( 60*/100)
+        float finalDamge = MANAGER.SESSION.Damage * (percent / 100f);
         return finalDamge;
     }
 
@@ -62,7 +63,7 @@ public abstract class SkillBase : MonoBehaviour
         {
             value.transform.position = Player.instance.transform.position + (Vector3.up*0.5f);
             value.transform.rotation = Quaternion.LookRotation(dir);
-            value.GetComponent<Bullet>().Initialize(dir);
+            value.GetComponent<Bullet>().Initialize(dir, Damage(), Effect_Status.Burn);
         });
     }
 

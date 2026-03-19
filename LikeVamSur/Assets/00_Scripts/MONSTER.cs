@@ -19,7 +19,7 @@ public class MONSTER : MonoBehaviour
         MANAGER.SESSION.AddMonster();   
         isSpawned = false;
         //юс╫ц╥н..
-        HP = 10;
+        HP = 20;
         MaxHP = HP;
 
         isDead = false;
