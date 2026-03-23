@@ -1,11 +1,16 @@
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class StatusEffect : MonoBehaviour
 {
     MONSTER monster;
     public GameObject Burn;
+    public GameObject FreezeStone;
+    [HideInInspector] 
+    public Renderer renderer;
+    private float freezeStack;
 
     List<IStatusEffect> activeEffects = new List<IStatusEffect>();
     private void Start()
@@ -23,6 +28,23 @@ public class StatusEffect : MonoBehaviour
         
     }
 
+    public void ApplyFreeze(float stackAmount)
+    {
+        var freeze = activeEffects.FirstOrDefault(x => x is Freeze_Status) as Freeze_Status;
+
+        if (freeze != null)
+        {
+            freeze.AddStack(stackAmount);
+            freeze.Apply(monster, this);
+        }
+        else
+        {
+            var newFreeze = new Freeze_Status();
+            newFreeze.AddStack(stackAmount);
+            newFreeze.Apply(monster, this);
+            activeEffects.Add(newFreeze);
+        }
+    }
     private void Update()
     {
         for (int i = 0; i < activeEffects.Count; i++)

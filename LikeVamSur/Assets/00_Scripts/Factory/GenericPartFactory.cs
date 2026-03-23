@@ -20,6 +20,7 @@ public class GenericPartFactory<T> : IFactory<T> where T : Component
         if (existing != null)
         {
             existing.gameObject.SetActive(true);
+            existing.GetComponent<Monster_Renderer_Finder>().Initialize();
             return;
         }
 
@@ -30,5 +31,7 @@ public class GenericPartFactory<T> : IFactory<T> where T : Component
             return;
         }
         GameObject part = GameObject.Instantiate(prefab,entity.transform);
+        part.GetComponent<Monster_Renderer_Finder>().Initialize();
+        part.name = id; 
     }
 }

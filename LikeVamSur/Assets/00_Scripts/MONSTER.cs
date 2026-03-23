@@ -13,7 +13,8 @@ public class MONSTER : MonoBehaviour
     public bool isSpawned = false;
 
     private IFactory<MONSTER> factory;
-
+    protected float speedMultiplier = 1f;
+    protected Animator animator;
     public virtual void Initialize(Transform player)
     {
         MANAGER.SESSION.AddMonster();   
@@ -28,6 +29,13 @@ public class MONSTER : MonoBehaviour
         target = player;
 
         factory.Build(this, monsterid);
+    }
+
+    public void SetSpeedMultiplier(float value)
+    {
+   
+            animator.speed = value;
+            speedMultiplier = value;
     }
 
     public void GetDamage(float dmg)

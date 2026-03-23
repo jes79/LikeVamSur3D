@@ -8,7 +8,7 @@ public class Monster_Movement : MONSTER
     public float speed = 3.0f;
 
     private Rigidbody rb;
-    private Animator animator;
+    //private Animator animator;
 
     //private bool isSpawned = false;
 
@@ -75,7 +75,7 @@ public class Monster_Movement : MONSTER
         Rotate(Direction());
         
 
-        rb.MovePosition(rb.position + Direction() * speed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + Direction() * speed *speedMultiplier* Time.fixedDeltaTime);
 
 
     }

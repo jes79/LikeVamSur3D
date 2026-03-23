@@ -14,6 +14,7 @@ public class Skill04_FrostField : SkillBase
         foreach (var hit in targets)
         {
             hit.GetComponent<MONSTER>().GetDamage(Damage());
+            hit.GetComponent<StatusEffect>().ApplyFreeze(0.5f);
         }
         
    

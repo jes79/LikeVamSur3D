@@ -19,6 +19,6 @@ MonoBehaviour:
     <color=#FFFF00>{0}</color>\uC758 \uD53C\uD574\uB97C \uC785\uC73C\uBA70, \uAC10\uC18D\uD569\uB2C8\uB2E4.(\uB3D9\uACB0)"
   state: 0
   baseCooldown: 1.5
-  baseDamage: 150
+  baseDamage: 10
   cooldownPerLevel: 0
   damagePerLevel: 15
