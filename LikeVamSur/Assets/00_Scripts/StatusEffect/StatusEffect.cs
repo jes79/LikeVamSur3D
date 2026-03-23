@@ -8,6 +8,7 @@ public class StatusEffect : MonoBehaviour
     MONSTER monster;
     public GameObject Burn;
     public GameObject FreezeStone;
+    public GameObject Shock;
     [HideInInspector] 
     public Renderer renderer;
     private float freezeStack;
@@ -45,6 +46,17 @@ public class StatusEffect : MonoBehaviour
             activeEffects.Add(newFreeze);
         }
     }
+
+    public void ApplyShock()
+    {
+        activeEffects.RemoveAll(e => e is Shock_Status);
+
+        Shock_Status shock = new Shock_Status();    
+        shock.Apply(monster, this);
+        activeEffects.Add(shock);
+    }
+
+
     private void Update()
     {
         for (int i = 0; i < activeEffects.Count; i++)

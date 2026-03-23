@@ -14,6 +14,7 @@ public class MONSTER : MonoBehaviour
 
     private IFactory<MONSTER> factory;
     protected float speedMultiplier = 1f;
+    protected float shockAmp = 0f;
     protected Animator animator;
     public virtual void Initialize(Transform player)
     {
@@ -38,12 +39,16 @@ public class MONSTER : MonoBehaviour
             speedMultiplier = value;
     }
 
+    public void SetShockAmp(float value)
+    {
+        shockAmp = value;   
+    }
     public void GetDamage(float dmg)
     {
         bool critical = MANAGER.SESSION.GetCritical();
 
-        float realDmg = critical ? dmg + dmg*(MANAGER.SESSION.CriticalDamagePercent /100) : dmg;
-
+        float criticalDmg = critical ? dmg + dmg*(MANAGER.SESSION.CriticalDamagePercent /100) : dmg;
+        float realDmg = criticalDmg * (1 + shockAmp);
         HP -= realDmg;
 
         var damageFont = MANAGER.POOL.Pooling_OBJ("DamageFont").Get((value) =>

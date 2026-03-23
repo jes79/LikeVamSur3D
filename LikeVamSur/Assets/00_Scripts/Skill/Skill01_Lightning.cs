@@ -25,6 +25,7 @@ public class Skill01_Lightning : SkillBase
             {
                 value.transform.position = targetPoint.position;
                 targetPoint.GetComponent<MONSTER>().GetDamage(Damage());
+                targetPoint.GetComponent<StatusEffect>().ApplyShock();
                 value.GetComponent<ParticleSystem>().Play();
 
             });
