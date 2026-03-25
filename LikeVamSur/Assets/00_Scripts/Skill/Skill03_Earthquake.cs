@@ -15,8 +15,9 @@ public class Skill03_Earthquake : SkillBase
 
             foreach(var hit in targets)
             {
-              
-                    hit.GetComponent<MONSTER>().GetDamage(Damage()); 
+
+                // hit.GetComponent<MONSTER>().GetDamage(Damage()); 
+                hit.GetComponent<MONSTER>().GetDamage(Damage(hit.GetComponent<StatusEffect>()));
             }
         });
     }

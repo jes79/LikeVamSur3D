@@ -11,6 +11,7 @@ public class MONSTER : MonoBehaviour
     public bool isDead = false;
     //protected bool isSpawned = false;
     public bool isSpawned = false;
+    public bool isStunned = false;
 
     private IFactory<MONSTER> factory;
     protected float speedMultiplier = 1f;
@@ -32,6 +33,7 @@ public class MONSTER : MonoBehaviour
         factory.Build(this, monsterid);
     }
 
+   //µ¿°á...
     public void SetSpeedMultiplier(float value)
     {
    
@@ -42,6 +44,13 @@ public class MONSTER : MonoBehaviour
     public void SetShockAmp(float value)
     {
         shockAmp = value;   
+    }
+
+    
+    public void SetStunned(bool isStun)
+    {
+        isStunned = isStun;
+        animator.speed = isStun ? 0.0f : 1f;
     }
     public void GetDamage(float dmg)
     {

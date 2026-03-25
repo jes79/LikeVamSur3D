@@ -55,7 +55,9 @@ public class Skill_Mng : MonoBehaviour
             case Effect_Status.None : break;
             case Effect_Status.Burn: effect.ApplyBurn(); break;
             case Effect_Status.Freeze: effect.ApplyFreeze(stack); break;
-            case Effect_Status.Shock: effect.ApplyShock(); break;   
+            case Effect_Status.Shock: effect.ApplyShock(); break;
+            case Effect_Status.Stun: effect.ApplyStun(); break;
+
         }
     }
 

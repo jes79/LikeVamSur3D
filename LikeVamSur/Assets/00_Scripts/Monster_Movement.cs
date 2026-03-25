@@ -65,6 +65,7 @@ public class Monster_Movement : MONSTER
         if (isDead) return;
         //if (target == null) return;
         if (!isSpawned) return;
+        if(isStunned) return;
          
         MoveAndRotate();
 

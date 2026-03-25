@@ -9,6 +9,7 @@ public class StatusEffect : MonoBehaviour
     public GameObject Burn;
     public GameObject FreezeStone;
     public GameObject Shock;
+    public GameObject Stun;
     [HideInInspector] 
     public Renderer renderer;
     private float freezeStack;
@@ -56,6 +57,14 @@ public class StatusEffect : MonoBehaviour
         activeEffects.Add(shock);
     }
 
+    public void ApplyStun()
+    {
+        activeEffects.RemoveAll(e => e is Stun_Status);
+
+        Stun_Status stun = new Stun_Status();
+        stun.Apply(monster, this);
+        activeEffects.Add(stun);
+    }
 
     private void Update()
     {

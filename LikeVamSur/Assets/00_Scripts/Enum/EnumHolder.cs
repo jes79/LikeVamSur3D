@@ -5,5 +5,7 @@ public enum Effect_Status
     Burn,
     Freeze,
     Shock,
+    Stun,
+    Knockback,
     MAX
 }
