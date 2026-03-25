@@ -44,7 +44,7 @@ public abstract class SkillBase : MonoBehaviour
         }
     }
 
-    protected float Damage()
+    protected float Damage(StatusEffect effect = null)
     {
         float percent = cardData.baseDamage + cardData.damagePerLevel * (level-1);
         //float baseDamage = MANAGER.SESSION.Damage;
@@ -53,18 +53,32 @@ public abstract class SkillBase : MonoBehaviour
         // 10 + 10(60/100) -> 10 + 6 -> 16 
         //float finalDamge = baseDamage * (percent / 100f); //16( 60*/100)
         float finalDamge = MANAGER.SESSION.Damage * (percent / 100f);
+        if(effect != null)
+        {
+            SetApplyStatus(effect);
+        }
         return finalDamge;
     }
 
     protected void MakeBullet(Vector3 dir)
     {
        
-        var bullet = MANAGER.POOL.Pooling_OBJ("Fireball").Get((value) =>
+        var bullet = MANAGER.POOL.Pooling_OBJ(cardData.name).Get((value) =>
         {
             value.transform.position = Player.instance.transform.position + (Vector3.up*0.5f);
             value.transform.rotation = Quaternion.LookRotation(dir);
-            value.GetComponent<Bullet>().Initialize(dir, Damage(), Effect_Status.Burn);
+            value.GetComponent<Bullet>().Initialize(dir, Damage(),cardData.name, cardData.effects);
         });
+    }
+
+    protected void SetApplyStatus(StatusEffect effect)
+    {
+        for (int i = 0; i < cardData.effects.Count; i++)
+        {
+            MANAGER.SKILL.ApplyStatus(cardData.effects[i].status,
+                                      effect,
+                                      cardData.effects[i].value);
+        }
     }
 
     protected Vector3 RandomPos(float radius)

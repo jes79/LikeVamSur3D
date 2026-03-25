@@ -22,3 +22,10 @@ MonoBehaviour:
   baseDamage: 120
   cooldownPerLevel: 0.05
   damagePerLevel: 10
+  effects:
+  - status: 1
+    value: 0
+  - status: 2
+    value: 0.5
+  - status: 3
+    value: 0

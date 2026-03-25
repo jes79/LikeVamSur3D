@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -13,6 +14,12 @@ public enum CardState
     Passive
 }
 
+[System.Serializable]
+public class StatusEffectClass
+{
+    public Effect_Status status;
+    public float value;
+}
 
 [CreateAssetMenu(fileName = "Scriptable", menuName = "DB/Card", order = int.MinValue)]
 public class CardDB : ScriptableObject
@@ -33,4 +40,7 @@ public class CardDB : ScriptableObject
     public float baseDamage;
     public float cooldownPerLevel;
     public float damagePerLevel;
+
+    public List<StatusEffectClass> effects = new List<StatusEffectClass>();
+
 }

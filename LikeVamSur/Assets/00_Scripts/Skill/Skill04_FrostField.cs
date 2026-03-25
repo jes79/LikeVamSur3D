@@ -13,8 +13,10 @@ public class Skill04_FrostField : SkillBase
 
         foreach (var hit in targets)
         {
-            hit.GetComponent<MONSTER>().GetDamage(Damage());
-            hit.GetComponent<StatusEffect>().ApplyFreeze(0.5f);
+            //hit.GetComponent<MONSTER>().GetDamage(Damage());
+            //hit.GetComponent<StatusEffect>().ApplyFreeze(0.5f); //기존방식
+            hit.GetComponent<MONSTER>().GetDamage(Damage(hit.GetComponent<StatusEffect>()));
+
         }
         
    

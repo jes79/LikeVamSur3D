@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public Effect_Status status;
+    public List<StatusEffectClass> status = new List<StatusEffectClass>();
+    public float freezeStack;
     public float Damage;
     public string BulletName;
     public float speed = 10.0f;
@@ -17,10 +19,11 @@ public class Bullet : MonoBehaviour
     [SerializeField] private GameObject ExplosionParticle;
     
 
-    public void Initialize(Vector3 dir, float dmg, Effect_Status status = Effect_Status.None)
+    public void Initialize(Vector3 dir, float dmg, string bulletName, List<StatusEffectClass> effectClass = null )
     {
         isHit = false;
-        this.status = status; 
+        BulletName = bulletName;    
+        this.status = effectClass; 
         Damage = dmg;
         direction = dir;
         //Destroy(this.gameObject, lifetiem);
@@ -55,6 +58,17 @@ public class Bullet : MonoBehaviour
 
             other.gameObject.GetComponent<MONSTER>().GetDamage(Damage);
 
+            if(status != null)
+            {
+                for (int i = 0; i < status.Count; i++)
+                {
+                    MANAGER.SKILL.ApplyStatus(status[i].status,
+                                              other.gameObject.GetComponent<StatusEffect>(),
+                                              status[i].value);
+                }
+
+            }
+            /*
             switch (status)
             {
                 case Effect_Status.None:
@@ -63,6 +77,7 @@ public class Bullet : MonoBehaviour
                     other.gameObject.GetComponent<StatusEffect>().ApplyBurn();
                     break;
             }
+            */
 
             StopAllCoroutines();
             StartCoroutine(WaitEffectAndReturn(delay));
