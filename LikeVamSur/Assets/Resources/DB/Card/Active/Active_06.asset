@@ -20,6 +20,9 @@ MonoBehaviour:
     \uBC00\uB824\uB0A9\uB2C8\uB2E4."
   state: 0
   baseCooldown: 1.5
-  baseDamage: 110
+  baseDamage: 30
   cooldownPerLevel: 0.1
   damagePerLevel: 10
+  effects:
+  - status: 5
+    value: 0

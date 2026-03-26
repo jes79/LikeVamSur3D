@@ -66,7 +66,7 @@ public class Skill06_MultiSlash : SkillBase
             {
                 if (monsterList[j].isDead == false)
                 {
-                    monsterList[j].GetDamage(Damage());
+                    monsterList[j].GetDamage(Damage(monsterList[j].GetComponent<StatusEffect>()));
                 }
                 
             }

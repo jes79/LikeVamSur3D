@@ -27,7 +27,7 @@ public class Skill05_Meteor : SkillBase
                     foreach (var monster in RangeMonsterLists(pos, 5f))
                     {
                         monster.GetDamage(Damage());
-                        Effect_Status status = (Effect_Status)Random.Range(1, (int)Effect_Status.MAX);
+                        Effect_Status status = (Effect_Status)Random.Range(1, (int)Effect_Status.Stun);
                         MANAGER.SKILL.ApplyStatus(status, monster.GetComponent<StatusEffect>(), 0.3f);
                     }
                 }));

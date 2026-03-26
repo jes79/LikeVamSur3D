@@ -1,4 +1,5 @@
-using NUnit.Framework;
+
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -13,8 +14,23 @@ public class StatusEffect : MonoBehaviour
     [HideInInspector] 
     public Renderer renderer;
     private float freezeStack;
+    private bool clearNextFrame = false;
 
     List<IStatusEffect> activeEffects = new List<IStatusEffect>();
+
+    public void Initialize()
+    {
+        StopAllCoroutines();
+        /*
+        foreach (var effect in activeEffects)
+        {
+            effect.End(monster,this);
+        }
+        activeEffects.Clear();
+        */
+        clearNextFrame = true;  
+        renderer.material.SetColor("_EmissionColor", Color.black); 
+    }
     private void Start()
     {
         monster = GetComponent<MONSTER>();
@@ -66,16 +82,82 @@ public class StatusEffect : MonoBehaviour
         activeEffects.Add(stun);
     }
 
+    public void ApplyKnockback( float distance, float duration)
+    {
+        if(monster.isDead) return;  
+
+        Vector3 direction = (transform.position - Player.instance.transform.position).normalized;
+        StartCoroutine(KnockbackCoroutine(direction, distance, duration));
+    }
+
+    IEnumerator KnockbackCoroutine(Vector3 dir, float dist, float time)
+    {
+        float elapsed = 0f;
+        float speed = dist / time;
+        Vector3 start = transform.position;
+        Vector3 end = start + dir.normalized* speed;
+        
+        while(elapsed < time)
+        {
+            elapsed += Time.deltaTime;
+            transform.position = Vector3.Lerp(start, end, elapsed/time);
+            yield return null;
+        }
+    }
+
+    public void GetHitEffect()
+    {
+        StartCoroutine(FlashEmission(0.5f));
+    }
+
+    IEnumerator FlashEmission(float fadeTime)
+    {
+        Color flashColor = Color.white * 4f;
+
+        float timer = 0f;
+        while (timer < fadeTime)
+        {
+            timer += Time.deltaTime;
+            Color current = Color.Lerp(flashColor, Color.black, timer / fadeTime);
+
+      
+            renderer.material.SetColor("_EmissionColor", current);
+            
+            yield return null;
+        }
+
+      
+            renderer.material.SetColor("_EmissionColor", Color.black);
+       
+
+        
+    }
+
     private void Update()
     {
-        for (int i = 0; i < activeEffects.Count; i++)
+
+
+        if (clearNextFrame)
+        {
+            foreach(var effect in activeEffects)
+            {
+                effect.End(monster, this);
+            }
+
+            activeEffects.Clear();
+            clearNextFrame = false;
+            return;
+        }
+        //역방향 순회(가장 간단한 수정)
+        for(int i = activeEffects.Count - 1; i >= 0; --i)
         {
             activeEffects[i].Tick(monster);
             if (activeEffects[i].IsFinished)
             {
                 activeEffects[i].End(monster, this);
-                activeEffects.RemoveAt(i);   
-            }
+                activeEffects.RemoveAt(i);
+            } 
         }
+
     }
 }

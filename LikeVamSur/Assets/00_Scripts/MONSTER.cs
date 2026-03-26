@@ -16,9 +16,16 @@ public class MONSTER : MonoBehaviour
     private IFactory<MONSTER> factory;
     protected float speedMultiplier = 1f;
     protected float shockAmp = 0f;
-    protected Animator animator;
+    public Animator animator; 
+
+    StatusEffect effect;
+    
     public virtual void Initialize(Transform player)
     {
+        if(effect == null)
+        {
+            effect = GetComponent<StatusEffect>();  
+        }
         MANAGER.SESSION.AddMonster();   
         isSpawned = false;
         //ÀÓ½Ã·Î..
@@ -52,6 +59,7 @@ public class MONSTER : MonoBehaviour
         isStunned = isStun;
         animator.speed = isStun ? 0.0f : 1f;
     }
+
     public void GetDamage(float dmg)
     {
         bool critical = MANAGER.SESSION.GetCritical();
@@ -59,6 +67,8 @@ public class MONSTER : MonoBehaviour
         float criticalDmg = critical ? dmg + dmg*(MANAGER.SESSION.CriticalDamagePercent /100) : dmg;
         float realDmg = criticalDmg * (1 + shockAmp);
         HP -= realDmg;
+
+        effect.GetHitEffect();
 
         var damageFont = MANAGER.POOL.Pooling_OBJ("DamageFont").Get((value) =>
         {
@@ -74,7 +84,7 @@ public class MONSTER : MonoBehaviour
         if (HP <= 0)
         {
             isDead = true;
-
+            effect.Initialize();
             MANAGER.SESSION.RemoveMonster();
             //Debug.Log("»ç¸Á");
             var deadEffect = MANAGER.POOL.Pooling_OBJ("DeadEffect").Get((value) =>
