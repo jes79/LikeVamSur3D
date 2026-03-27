@@ -15,6 +15,7 @@ public class Session_Mng : MonoBehaviour
     public OnSelectedCard onSelectedCard;
     public OnHpChanged onHpChanged;
 
+    public List<Orb> Orbs = new List<Orb>();
     public Dictionary<string , SelectCard> SelectedCards =  new Dictionary<string , SelectCard>(); 
 
     public int CurrentWave;
@@ -153,28 +154,30 @@ public class Session_Mng : MonoBehaviour
 
     public int GetRequiredExp()
     {
-        int level = Level + 1;
-        //20, 40 level 에서는 레벨업 하기 어렵게..
-        if (level < 20)
-        {
-            return (level * 10) - 5;
-        }
-        else if (level == 20)
-        {
-            return (level * 10) - 5 + 600;
-        }
-        else if (level < 40)
-        {
-            return (level * 13) - 6;
-        }
-        else if(level == 40)
-        {
-            return (level * 13) - 6 + 2400;
-        }
-        else
-        {
-            return (level * 16) - 8;
-        }
+        //테스트
+        return 5000;
+        //int level = Level + 1;
+        ////20, 40 level 에서는 레벨업 하기 어렵게..
+        //if (level < 20)
+        //{
+        //    return (level * 10) - 5;
+        //}
+        //else if (level == 20)
+        //{
+        //    return (level * 10) - 5 + 600;
+        //}
+        //else if (level < 40)
+        //{
+        //    return (level * 13) - 6;
+        //}
+        //else if (level == 40)
+        //{
+        //    return (level * 13) - 6 + 2400;
+        //}
+        //else
+        //{
+        //    return (level * 16) - 8;
+        //}
 
     }
 

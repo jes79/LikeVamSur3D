@@ -92,11 +92,17 @@ public class MONSTER : MonoBehaviour
             effect.Initialize();
             MANAGER.SESSION.RemoveMonster();
             //Debug.Log("»ç¸Á");
-            var item = MANAGER.POOL.Pooling_OBJ("Item").Get((value) =>
+
+            int RandomCount = Random.Range(0, 10);
+            if( RandomCount ==1)
             {
-                value.transform.position = transform.position;
-                value.GetComponent<Item>().Initialize("Item_01");
-            });
+                var item = MANAGER.POOL.Pooling_OBJ("Item").Get((value) =>
+                {
+                    value.transform.position = transform.position;
+                    value.GetComponent<Item>().Initialize("Item_02");
+                });
+            }
+
 
             var deadEffect = MANAGER.POOL.Pooling_OBJ("DeadEffect").Get((value) =>
             {

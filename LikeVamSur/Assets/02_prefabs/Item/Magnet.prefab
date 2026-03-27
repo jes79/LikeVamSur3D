@@ -9774,6 +9774,7 @@ GameObject:
   - component: {fileID: 4785427329981837716}
   - component: {fileID: 9058949462871116406}
   - component: {fileID: 5494748919717102282}
+  - component: {fileID: 4398251932772139616}
   m_Layer: 0
   m_Name: Magnet
   m_TagString: Untagged
@@ -14615,3 +14616,15 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
+--- !u!114 &4398251932772139616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8281337232658337581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1038756d460fd7043bea865b8f80c700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Magnet_Effect
