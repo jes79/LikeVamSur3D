@@ -19,4 +19,13 @@ public class Item : MonoBehaviour
         itemEffect = GetComponentInChildren<IItemEffect>();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            itemEffect.OnPickUp(other.gameObject); //1인게임이라 owner가 필요없긴 함..
+            MANAGER.POOL.m_pool_Dictionary["Item"].Return(this.gameObject);
+        }
+    }
+
 }

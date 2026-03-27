@@ -29,14 +29,34 @@ public class Session_Mng : MonoBehaviour
 
     public float baseDamage;
 
+    private float hp = 50f;
+
     [Space(20f)]
     [Header("## Player Data ##")]
-    public float HP;
+    public float magnetRadius;
+
+    public float HP
+    {
+        get => hp;
+        set
+        { 
+            if(value >= MaxHP)
+            {
+                hp = MaxHP;
+            }
+            else
+            {
+                hp = value;
+            }
+
+            onHpChanged?.Invoke(hp);
+        }
+    }
 
     public float Damage => baseDamage * (1f + DamagePercent / 100f);
 
     public float MaxHP => baseMaxHP*(1f + HPPercent/100f);
-    public float magnetRadius;
+   
 
     [Space(20f)]
     [Header("## Player Plus Data ##")]
@@ -113,7 +133,7 @@ public class Session_Mng : MonoBehaviour
     public void GetDamage(float dmg)
     {
         HP -= dmg;
-        onHpChanged?.Invoke(HP);
+        //onHpChanged?.Invoke(HP);
     }
 
     public void AddExp(float exp)

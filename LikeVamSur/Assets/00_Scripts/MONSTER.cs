@@ -69,7 +69,11 @@ public class MONSTER : MonoBehaviour
         float realDmg = criticalDmg * (1 + shockAmp);
         HP -= realDmg;
 
-        effect.GetHitEffect();
+        if (!isDead)
+        {
+            effect.GetHitEffect();
+        }
+        
 
         var damageFont = MANAGER.POOL.Pooling_OBJ("DamageFont").Get((value) =>
         {
