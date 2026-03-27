@@ -8,6 +8,7 @@ using UnityEngine.U2D;
 public class Database_Mng : MonoBehaviour
 {
     public PartDB Monster;
+    public PartDB Item;
     //public PartDB Projectile;
 
     //public CardDB Card;
@@ -20,6 +21,7 @@ public class Database_Mng : MonoBehaviour
     private void Start()
     {
         Monster = GetDB("Monster");
+        Item = GetDB("Item");
         //Projectile = GetDB("Projectile");
         atlas = Resources.Load<SpriteAtlas>("Atlas");
 

@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class MONSTER : MonoBehaviour
 {
@@ -87,6 +88,12 @@ public class MONSTER : MonoBehaviour
             effect.Initialize();
             MANAGER.SESSION.RemoveMonster();
             //Debug.Log("»ç¸Á");
+            var item = MANAGER.POOL.Pooling_OBJ("Item").Get((value) =>
+            {
+                value.transform.position = transform.position;
+                value.GetComponent<Item>().Initialize("Item_01");
+            });
+
             var deadEffect = MANAGER.POOL.Pooling_OBJ("DeadEffect").Get((value) =>
             {
                 value.transform.position = transform.position;
