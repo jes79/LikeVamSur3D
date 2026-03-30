@@ -99,7 +99,7 @@ public class MONSTER : MonoBehaviour
                 var item = MANAGER.POOL.Pooling_OBJ("Item").Get((value) =>
                 {
                     value.transform.position = transform.position;
-                    value.GetComponent<Item>().Initialize("Item_02");
+                    value.GetComponent<Item>().Initialize("Item_03");
                 });
             }
 

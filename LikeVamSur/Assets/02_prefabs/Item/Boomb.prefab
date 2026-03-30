@@ -4926,6 +4926,7 @@ GameObject:
   - component: {fileID: 9174292369599440955}
   - component: {fileID: 3349173919716367943}
   - component: {fileID: 2126783374769907021}
+  - component: {fileID: -6310712153274186916}
   m_Layer: 0
   m_Name: Boomb
   m_TagString: Untagged
@@ -9767,6 +9768,21 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
+--- !u!114 &-6310712153274186916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4752029915688596866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 138b4f38343bb2f4da8e40af64dbb6ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Explosion_Effect
+  radius: 8
+  damage: 100
+  ExplosionEffect: {fileID: 7178869590152608518, guid: 61064f7635afabd45b54d38100125456, type: 3}
 --- !u!1 &8386686116117239355
 GameObject:
   m_ObjectHideFlags: 0
