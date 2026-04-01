@@ -70,8 +70,27 @@ public class Monster_Movement : MONSTER
         //if (target == null) return;
         if (!isSpawned) return;
         if(isStunned) return;
-         
+
+        if (Boss(monsterid) && monsterSkill != null)
+        {
+            skillTimer += Time.fixedDeltaTime;
+            if(skillTimer >= skillCooldown && skillCoroutine == null)
+            {
+                skillCoroutine = StartCoroutine(CastBossSkill());
+            }
+        }
+
         MoveAndRotate();
+    }
+
+    IEnumerator CastBossSkill()
+    {
+        animator.SetTrigger("Magic");
+        //yield return new WaitForSeconds(0.5f); //юс╫ц..
+        yield return monsterSkill.CastSkill();
+
+        skillTimer = 0f;
+        skillCoroutine = null;
     }
 
     private void MoveAndRotate()

@@ -7,7 +7,7 @@ public class MONSTER : MonoBehaviour
     public float MaxHP;
 
     public Transform target;
-    //public string monsterid; 
+    public string monsterid; //다시 사용..
 
     public bool isDead = false;
     //protected bool isSpawned = false;
@@ -17,6 +17,13 @@ public class MONSTER : MonoBehaviour
     private IFactory<MONSTER> factory;
     protected float speedMultiplier = 1f;
     protected float shockAmp = 0f;
+
+    protected Coroutine skillCoroutine;
+    protected float skillCooldown;
+    protected float skillTimer;
+
+    public MonsterSkill monsterSkill; 
+
     public Animator animator; 
 
     StatusEffect effect;
@@ -29,6 +36,8 @@ public class MONSTER : MonoBehaviour
         }
         MANAGER.SESSION.AddMonster();   
         isSpawned = false;
+
+        monsterid = monsterID;
         //임시로..
         //HP = 20;
         HP = Boss(monsterID) ? 10 * 10 : 10;
