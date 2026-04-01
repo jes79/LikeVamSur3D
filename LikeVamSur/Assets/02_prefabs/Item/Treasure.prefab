@@ -1435,7 +1435,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
   UVModule:
     serializedVersion: 2
-    enabled: 1
+    enabled: 0
     mode: 1
     timeMode: 0
     fps: 30
@@ -1554,7 +1554,7 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 21300000, guid: 58ce5409aec0a5b46944c19c9231ff5c, type: 3}
+    - sprite: {fileID: 0}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -4861,7 +4861,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f7d420caf00b4e74c88b3682321312dd, type: 2}
+  - {fileID: 2100000, guid: c965a3fd3c5b5af4aa35e8872936eb98, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9774,6 +9774,7 @@ GameObject:
   - component: {fileID: 5709774196189047943}
   - component: {fileID: 4041992365086447066}
   - component: {fileID: 2828571419645437123}
+  - component: {fileID: 4968298696496466402}
   m_Layer: 0
   m_Name: Treasure
   m_TagString: Untagged
@@ -14615,3 +14616,20 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
+--- !u!114 &4968298696496466402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4158728389675499541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7412818bb3ef14bb1b0e2883873540, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Treasure_Effect
+  particle: {fileID: 1664435206738171632}
+  materials:
+  - {fileID: 2100000, guid: c965a3fd3c5b5af4aa35e8872936eb98, type: 2}
+  - {fileID: 2100000, guid: 2bbaf6666f3df184baa0d51ec9f6c1f5, type: 2}
+  - {fileID: 2100000, guid: 0d5e56d7f627ce64dae75d31f5a08561, type: 2}

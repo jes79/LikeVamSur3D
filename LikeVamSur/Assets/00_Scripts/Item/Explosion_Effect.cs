@@ -7,8 +7,17 @@ public class Explosion_Effect : MonoBehaviour, IItemEffect
 
     public GameObject ExplosionEffect;
 
+    bool isPickUp = false;
+    public void Initialize()
+    {
+        isPickUp = false;
+    }
+
     public void OnPickUp(GameObject owner)
     {
+        if (isPickUp) return;
+        isPickUp = true;
+
         Vector3 center = transform.position + Vector3.up*3f;
         Collider[] hits = Physics.OverlapSphere(center, radius, LayerMask.GetMask("Monster"));
 

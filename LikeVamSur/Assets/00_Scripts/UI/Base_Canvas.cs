@@ -44,6 +44,7 @@ public class Base_Canvas : MonoBehaviour
     public Transform HOLDERLAYER; 
 
     public Image EXPFill;
+    public Treasure Treasure;
     public TextMeshProUGUI LevelText;
     public TextMeshProUGUI monsterCountText;
     public TextMeshProUGUI TimerText;
@@ -62,6 +63,12 @@ public class Base_Canvas : MonoBehaviour
         TimerText.text = Utils_UI.FormatTime(MANAGER.SESSION.GameTime);
 
 
+    }
+
+    public void SelectTreasure(int value)
+    {
+        Time.timeScale = 0;
+        Treasure.Initialize(value);
     }
 
     public void SelectCard(bool AllActive = false)

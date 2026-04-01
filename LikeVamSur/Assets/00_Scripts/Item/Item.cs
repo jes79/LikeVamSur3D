@@ -17,6 +17,7 @@ public class Item : MonoBehaviour
         factory.Build(this, id);
 
         itemEffect = GetComponentInChildren<IItemEffect>();
+        itemEffect.Initialize();
     }
 
     private void OnTriggerEnter(Collider other)

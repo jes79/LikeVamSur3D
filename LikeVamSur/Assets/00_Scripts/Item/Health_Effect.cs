@@ -2,8 +2,17 @@ using UnityEngine;
 
 public class Health_Effect : MonoBehaviour, IItemEffect
 {
+    bool isPickUp = false;
+    public void Initialize()
+    {
+        isPickUp = false;
+    }
     public void OnPickUp(GameObject owner)
     {
+
+        if (isPickUp) return;
+        isPickUp = true;
+
         float hpCount = MANAGER.SESSION.MaxHP * 0.3f;
         MANAGER.SESSION.HP += hpCount;
 

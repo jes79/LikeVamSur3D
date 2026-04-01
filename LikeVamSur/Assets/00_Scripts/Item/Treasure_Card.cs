@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Treasure_Card : MonoBehaviour
 {
@@ -10,31 +11,16 @@ public class Treasure_Card : MonoBehaviour
     private float rollDuration;
     private int loopCount;
 
+    public bool isFinished = false;
+
     private List<RectTransform> cards = new();
 
-   
-    private void Start()
+    [SerializeField] Treasure treasure;
+    Dictionary<int, SelectCard> ActiveCards = new Dictionary<int, SelectCard>();
+    public void Initialized(List<SelectCard> candidateCards)
     {
-        //테스트 
-        //얻은 카드도 없고 보스몬스터도 없기 때문에 임시로..
-        List<CardDB> cards = new List<CardDB> ();
-        CardDB card01 = new CardDB ();
-        CardDB card02 = new CardDB ();  
-        CardDB card03 = new CardDB ();  
-        CardDB card04 = new CardDB ();  
-        CardDB card05 = new CardDB ();  
+        isFinished = false; 
 
-        cards.Add (card01);
-        cards.Add (card02);
-        cards.Add (card03);
-        cards.Add (card04);
-        cards.Add (card05);
-
-        Initialized(cards);
-
-    }
-    public void Initialized(List<CardDB> candidateCards)
-    {
         rollDuration = Random.Range(5f, 8f);
         loopCount = Random.Range(5, 10);
 
@@ -44,11 +30,17 @@ public class Treasure_Card : MonoBehaviour
         }
         cards.Clear();  
 
-        for(int i = 0;  i < candidateCards.Count; i++)
+        ActiveCards.Clear();
+        for(int i = 0;  i < 20; i++)
         {
-            var pick = candidateCards[i];
+            int value = Random.Range(0, candidateCards.Count);
+            var pick = candidateCards[value];
+            
+            ActiveCards.Add(i, pick);
             GameObject go = Instantiate(cardPrefab, rollerParent);
             go.SetActive(true);
+            go.GetComponent<Image>().sprite = MANAGER.DB.GetSprite(pick.db.name);
+
             RectTransform rt = go.GetComponent<RectTransform>();
             rt.anchoredPosition = new Vector2(0, -i*cardHeight);
             cards.Add(rt);
@@ -69,11 +61,25 @@ public class Treasure_Card : MonoBehaviour
         Vector2 endPos = startPos - new Vector2(0, totalDistance);
         float elapsed = 0f;
 
+        Vector2 previousPos = startPos;
+        float threshold = 1.5f;
+
+
         while (elapsed < rollDuration)
         {
             elapsed += Time.unscaledDeltaTime;
             float t = EaseOutQuart(elapsed / rollDuration);
-            rollerParent.anchoredPosition = Vector2.Lerp(startPos, endPos, t);
+
+            Vector2 currentPos = Vector2.Lerp(startPos, endPos, t);
+
+            if((currentPos - previousPos).magnitude < threshold && (endPos - currentPos).magnitude < 10.0f)
+            {
+                rollerParent.anchoredPosition = endPos;
+                break;
+            }
+
+            rollerParent.anchoredPosition = currentPos;
+            previousPos = currentPos;
 
             for (int i = 0; i < cards.Count; i++)
             {
@@ -85,6 +91,15 @@ public class Treasure_Card : MonoBehaviour
             }
             yield return null;
         }
+        isFinished = true;
+
+        SelectCard card = ActiveCards[targetIndex];
+        MANAGER.SESSION.SelectedCards[card.db.id].Level++;
+        MANAGER.SESSION.RegisterSkill(card.db);
+
+        treasure.ConfirmCheck();    
+
+        GetComponent<Animator>().Play("Effect");
 
         RectTransform selectedCard = cards[targetIndex];
         float offset = selectedCard.anchoredPosition.y + rollerParent.anchoredPosition.y;
