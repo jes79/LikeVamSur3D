@@ -15,6 +15,8 @@ public class Base_Canvas : MonoBehaviour
     public Transform activeFrameContent;
     public Transform passiveFrameContent;
     List<GameObject> SkillFrameGorvage = new List<GameObject>();
+    public GameObject BossUIAnimationObj;
+
 
     private void Awake()
     {
@@ -30,15 +32,25 @@ public class Base_Canvas : MonoBehaviour
         MANAGER.SESSION.onMonsterCountChanged += M_CountText;
 
         MANAGER.SESSION.onSelectedCard += SetSkillFrame;
-
+        MANAGER.SESSION.onBossTime += OnBoss;
 
         SelectCard(true);
     }
 
+    private void OnBoss()
+    {
+        BossUIAnimationObj.SetActive(true);
+        Invoke(nameof(BossObjectDisabled), 1.2f);
+    }
+    private void BossObjectDisabled() => BossUIAnimationObj.SetActive(false);
+
     private void OnDestroy()
     {
         MANAGER.SESSION.onExpChanged -= EXPChange;
+        MANAGER.SESSION.onHpChanged -= HPChanged; //누락된것 추가..
         MANAGER.SESSION.onMonsterCountChanged -= M_CountText;
+        MANAGER.SESSION.onSelectedCard -= SetSkillFrame;//누락된것 추가..
+        MANAGER.SESSION.onBossTime -= OnBoss;
     }
 
     public Transform HOLDERLAYER; 

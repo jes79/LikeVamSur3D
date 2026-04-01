@@ -6,6 +6,7 @@ public delegate void OnExpChanged(float exp);
 public delegate void OnMonsterCountChanged(int value);
 public delegate void OnSelectedCard();
 public delegate void OnHpChanged(float hp);
+public delegate void OnBossTime();
 
 
 public class Session_Mng : MonoBehaviour
@@ -14,6 +15,7 @@ public class Session_Mng : MonoBehaviour
     public OnMonsterCountChanged onMonsterCountChanged;
     public OnSelectedCard onSelectedCard;
     public OnHpChanged onHpChanged;
+    public OnBossTime onBossTime;
 
     public List<Orb> Orbs = new List<Orb>();
     public Dictionary<string , SelectCard> SelectedCards =  new Dictionary<string , SelectCard>(); 
@@ -25,6 +27,7 @@ public class Session_Mng : MonoBehaviour
     public float Exp;
 
     public float GameTime;
+    private float BossTime = 10f;
 
     public float baseMaxHP;
 
@@ -86,6 +89,12 @@ public class Session_Mng : MonoBehaviour
     private void Update()
     {
         GameTime += Time.unscaledDeltaTime;//Time.timeScale = 0; 인상태에서도 작동됨.
+        if(GameTime >= BossTime)
+        {
+            Debug.Log("Get Boss!");
+            BossTime += 10f;
+            onBossTime?.Invoke();   
+        }
     }
 
     public void RefreshHpbyPercent(float oldMaxHP)

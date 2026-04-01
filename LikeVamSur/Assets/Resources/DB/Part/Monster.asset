@@ -17,3 +17,5 @@ MonoBehaviour:
     prefab: {fileID: 3141925786623193410, guid: 383714a6078b855449957bc5766991e6, type: 3}
   - id: Skeleton_02
     prefab: {fileID: 3141925786623193410, guid: 62a384d0c2c6baf4fa718b5e58596951, type: 3}
+  - id: Skeleton_Boss
+    prefab: {fileID: 4673170958549215297, guid: d378b9af5bf3cdb489cc86b74502bf40, type: 3}

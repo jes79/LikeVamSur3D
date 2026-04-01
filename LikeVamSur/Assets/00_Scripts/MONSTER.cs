@@ -7,7 +7,7 @@ public class MONSTER : MonoBehaviour
     public float MaxHP;
 
     public Transform target;
-    public string monsterid;
+    //public string monsterid; 
 
     public bool isDead = false;
     //protected bool isSpawned = false;
@@ -21,7 +21,7 @@ public class MONSTER : MonoBehaviour
 
     StatusEffect effect;
     
-    public virtual void Initialize(Transform player)
+    public virtual void Initialize(Transform player, string monsterID)
     {
         if(effect == null)
         {
@@ -30,15 +30,21 @@ public class MONSTER : MonoBehaviour
         MANAGER.SESSION.AddMonster();   
         isSpawned = false;
         //임시로..
-        HP = 20;
+        //HP = 20;
+        HP = Boss(monsterID) ? 10 * 10 : 10;
         MaxHP = HP;
 
         isDead = false;
-        monsterid = Random.Range(0, 2) == 1 ? "Skeleton_01" : "Skeleton_02";
+        //monsterid = Random.Range(0, 2) == 1 ? "Skeleton_01" : "Skeleton_02";
         factory = new GenericPartFactory<MONSTER>(MANAGER.DB.Monster);
         target = player;
 
-        factory.Build(this, monsterid);
+        factory.Build(this, monsterID);
+    }
+
+    protected bool Boss(string monsterID)
+    {
+        return monsterID.Split("_")[1] == "Boss";
     }
 
    //동결...
@@ -142,8 +148,6 @@ public class MONSTER : MonoBehaviour
                 OrbMake(deathPostion, unit);
 
             }
-
-
         }
 
         if (exp > 0.01f)

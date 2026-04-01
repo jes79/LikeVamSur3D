@@ -58,6 +58,7 @@ MonoBehaviour:
   isDead: 0
   isSpawned: 0
   isStunned: 0
+  animator: {fileID: 0}
   speed: 3
 --- !u!114 &8060552664052987006
 MonoBehaviour:

@@ -27,15 +27,19 @@ public class Monster_Movement : MONSTER
         animator = GetComponentInChildren<Animator>();
     }
 
-    public override void Initialize(Transform player)
+    public override void Initialize(Transform player, string monsterID)
     {
-        base.Initialize(player);
+        base.Initialize(player, monsterID);
 
         Rotate(Direction(), false);
 
 
         //StartCoroutine(SpawnStartCoroutine(transform.localScale));
-        StartCoroutine(SpawnStartCoroutine(new Vector3(15f, 15f,15f)));
+
+        //bool boss = monsterID.Split("_")[1] == "Boss";
+        float scale = Boss(monsterID) ? 25f : 15f;
+        speed = Boss(monsterID) ? 5f : 3f;
+        StartCoroutine(SpawnStartCoroutine(new Vector3(scale, scale,scale)));
     }
 
     IEnumerator SpawnStartCoroutine(Vector3 scaleEnd)
@@ -68,17 +72,13 @@ public class Monster_Movement : MONSTER
         if(isStunned) return;
          
         MoveAndRotate();
-
     }
 
     private void MoveAndRotate()
     {
         Rotate(Direction());
         
-
         rb.MovePosition(rb.position + Direction() * speed *speedMultiplier* Time.fixedDeltaTime);
-
-
     }
 
 
@@ -103,12 +103,7 @@ public class Monster_Movement : MONSTER
             else
             {
                 transform.rotation = targetRotation;
-            }
-            
-
+            }            
         }
-
     }
-
-
 }
