@@ -5820,6 +5820,7 @@ MonoBehaviour:
   Item: {fileID: 0}
   ActiveCards: []
   PassiveCards: []
+  NoneCards: []
 --- !u!1 &1192875528
 GameObject:
   m_ObjectHideFlags: 0
