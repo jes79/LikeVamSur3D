@@ -13,6 +13,7 @@ public class Treasure_Effect : MonoBehaviour, IItemEffect
     {
         isPickUp = false;
         int randomValue = Random.Range(0, 3);
+        //randomValue = 2;
         value = randomValue;
         particle.material = materials[randomValue];
     }

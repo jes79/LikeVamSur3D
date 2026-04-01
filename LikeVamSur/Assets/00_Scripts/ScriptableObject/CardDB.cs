@@ -11,7 +11,8 @@ public class SelectCard
 public enum CardState
 {
     Active,
-    Passive
+    Passive,
+    None
 }
 
 [System.Serializable]

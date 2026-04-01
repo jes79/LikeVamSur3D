@@ -1,5 +1,4 @@
-using JetBrains.Annotations;
-using NUnit.Framework;
+
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -14,6 +13,7 @@ public class Database_Mng : MonoBehaviour
     //public CardDB Card;
     public List<CardDB> ActiveCards = new List<CardDB>();
     public List<CardDB> PassiveCards = new List<CardDB>();
+    public List<CardDB> NoneCards = new List<CardDB>();
 
 
     SpriteAtlas atlas;
@@ -29,6 +29,7 @@ public class Database_Mng : MonoBehaviour
         //LoadAll 은 폴더 내부의 모든 객체를 다 참조함.
         ActiveCards = new List<CardDB>(Resources.LoadAll<CardDB>("DB/Card/Active"));
         PassiveCards = new List<CardDB>(Resources.LoadAll<CardDB>("DB/Card/Passive"));
+        NoneCards = new List<CardDB>(Resources.LoadAll<CardDB>("DB/Card/None"));
 
 
     }

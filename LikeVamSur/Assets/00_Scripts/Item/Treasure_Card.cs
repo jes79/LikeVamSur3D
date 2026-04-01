@@ -48,12 +48,22 @@ public class Treasure_Card : MonoBehaviour
 
         rollerParent.anchoredPosition = Vector2.zero;
 
-        StartCoroutine(RollingCoroutine());
+        int targetIndex = Random.Range(0, cards.Count);
+        SelectCard card = ActiveCards[targetIndex];
+
+        if (MANAGER.SESSION.SelectedCards.ContainsKey(card.db.id))
+        {
+            MANAGER.SESSION.SelectedCards[card.db.id].Level++;
+        }
+
+        StartCoroutine(RollingCoroutine(targetIndex));
+
     }
 
-    IEnumerator RollingCoroutine()
+    IEnumerator RollingCoroutine(int targetIndex)
     {
-        int targetIndex = Random.Range(0, cards.Count);
+        //int targetIndex = Random.Range(0, cards.Count);
+
         int totalSteps = loopCount*cards.Count + targetIndex;
         float totalDistance = totalSteps * cardHeight;
 
@@ -94,16 +104,25 @@ public class Treasure_Card : MonoBehaviour
         isFinished = true;
 
         SelectCard card = ActiveCards[targetIndex];
-        MANAGER.SESSION.SelectedCards[card.db.id].Level++;
-        MANAGER.SESSION.RegisterSkill(card.db);
+
+        if (MANAGER.SESSION.SelectedCards.ContainsKey(card.db.id))
+        {
+            MANAGER.SESSION.RegisterSkill(card.db);
+        }
+        else
+        {
+            MANAGER.SESSION.HP += 25;
+        }
+
 
         treasure.ConfirmCheck();    
 
         GetComponent<Animator>().Play("Effect");
 
-        RectTransform selectedCard = cards[targetIndex];
-        float offset = selectedCard.anchoredPosition.y + rollerParent.anchoredPosition.y;
-        rollerParent.anchoredPosition -= new Vector2(0, offset);
+        //RectTransform selectedCard = cards[targetIndex];
+        //float offset = selectedCard.anchoredPosition.y + rollerParent.anchoredPosition.y;
+        //rollerParent.anchoredPosition -= new Vector2(0, offset);
+        rollerParent.anchoredPosition = endPos;
     }
 
     float GetHighestCardY()
