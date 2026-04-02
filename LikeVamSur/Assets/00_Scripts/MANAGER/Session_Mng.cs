@@ -88,8 +88,9 @@ public class Session_Mng : MonoBehaviour
     }
     private void Update()
     {
-        GameTime += Time.unscaledDeltaTime;//Time.timeScale = 0; 인상태에서도 작동됨.
-        if(GameTime >= BossTime)
+        //GameTime += Time.unscaledDeltaTime;//Time.timeScale = 0; 인상태에서도 작동됨.
+        GameTime += Time.deltaTime;
+        if (GameTime >= BossTime)
         {
             Debug.Log("Get Boss!");
             BossTime += 10f;

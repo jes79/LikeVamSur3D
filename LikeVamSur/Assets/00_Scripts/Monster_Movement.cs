@@ -33,6 +33,12 @@ public class Monster_Movement : MONSTER
 
         Rotate(Direction(), false);
 
+        if (Boss(monsterID))
+        {
+            monsterSkill = GetComponentInChildren<MonsterSkill>();
+            monsterSkill.monster = this;
+        }
+
 
         //StartCoroutine(SpawnStartCoroutine(transform.localScale));
 
@@ -80,7 +86,11 @@ public class Monster_Movement : MONSTER
             }
         }
 
-        MoveAndRotate();
+        if(skillCoroutine == null)
+        {
+            MoveAndRotate();
+        }
+
     }
 
     IEnumerator CastBossSkill()

@@ -19,7 +19,7 @@ public class MONSTER : MonoBehaviour
     protected float shockAmp = 0f;
 
     protected Coroutine skillCoroutine;
-    protected float skillCooldown;
+    protected float skillCooldown = 5f;
     protected float skillTimer;
 
     public MonsterSkill monsterSkill; 
