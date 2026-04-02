@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ef6f7dd605a69a41b367bc7d4f43d8e, type: 3}
+  m_Name: LevelDesign
+  m_EditorClassIdentifier: Assembly-CSharp::LevelDesign
+  ExplaneMonsterLevelDesi: "\uBAAC\uC2A4\uD130\uC758 \uD604\uC7AC \uCCB4\uB825 \uAE30\uC911\uC744
+    \uC124\uC815\uD569\uB2C8\uB2E4."
+  baseHP: 10
+  bossHpMultiplier: 10
+  growthRate: 0.25
+  exponent: 2
+  MonsterSpawnRate: 1
+  BossSpawnRate: 10
+  PlayerExpExponent: 1.5
+  MinEXP: 1
+  MaxEXP: 0

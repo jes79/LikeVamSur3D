@@ -40,7 +40,8 @@ public class MONSTER : MonoBehaviour
         monsterid = monsterID;
         //юс╫ц╥н..
         //HP = 20;
-        HP = Boss(monsterID) ? 10 * 10 : 10;
+        //HP = Boss(monsterID) ? 10 * 10 : 10;
+        HP = MANAGER.DB.levelDesign.GetHp(MANAGER.SESSION.GameTime, Boss(monsterid));
         MaxHP = HP;
 
         isDead = false;
@@ -139,8 +140,10 @@ public class MONSTER : MonoBehaviour
             */
             MANAGER.POOL.m_pool_Dictionary["Monster"].Return(this.gameObject);
 
-            DropEXP(transform.position, Random.Range(2.0f, 5.0f));
-            //DropEXP(transform.position, Random.Range(10.0f, 50.0f));
+            int exp = Mathf.FloorToInt(Random.Range(MANAGER.DB.levelDesign.MinEXP, MANAGER.DB.levelDesign.MaxEXP + 1));
+            //DropEXP(transform.position, Random.Range(2.0f, 5.0f));
+            DropEXP(transform.position,
+                Boss(monsterid) ? exp * 10 : exp);
         }
     }
 

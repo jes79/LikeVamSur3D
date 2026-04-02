@@ -27,7 +27,7 @@ public class Session_Mng : MonoBehaviour
     public float Exp;
 
     public float GameTime;
-    private float BossTime = 10f;
+    private float BossTime;
 
     public float baseMaxHP;
 
@@ -70,9 +70,6 @@ public class Session_Mng : MonoBehaviour
     public float expPlusPercent;
     public float CriticalPercent;
     public float CriticalDamagePercent;
- 
-
-
 
 
     public bool isGameOver = false;
@@ -82,7 +79,7 @@ public class Session_Mng : MonoBehaviour
     {
         //MaxHP = HP;
         baseMaxHP = HP;
-
+        BossTime = MANAGER.DB.levelDesign.BossSpawnRate;
         Base_Canvas.instance.HPChanged(HP);
 
     }
@@ -93,7 +90,7 @@ public class Session_Mng : MonoBehaviour
         if (GameTime >= BossTime)
         {
             Debug.Log("Get Boss!");
-            BossTime += 10f;
+            BossTime += MANAGER.DB.levelDesign.BossSpawnRate;
             onBossTime?.Invoke();   
         }
     }
@@ -175,27 +172,28 @@ public class Session_Mng : MonoBehaviour
         //return 5000;
         int level = Level + 1;
         //20, 40 level 에서는 레벨업 하기 어렵게..
-        if (level < 20)
-        {
-            return (level * 10) - 5;
-        }
-        else if (level == 20)
-        {
-            return (level * 10) - 5 + 600;
-        }
-        else if (level < 40)
-        {
-            return (level * 13) - 6;
-        }
-        else if (level == 40)
-        {
-            return (level * 13) - 6 + 2400;
-        }
-        else
-        {
-            return (level * 16) - 8;
-        }
+        //if (level < 20)
+        //{
+        //    return (level * 10) - 5;
+        //}
+        //else if (level == 20)
+        //{
+        //    return (level * 10) - 5 + 600;
+        //}
+        //else if (level < 40)
+        //{
+        //    return (level * 13) - 6;
+        //}
+        //else if (level == 40)
+        //{
+        //    return (level * 13) - 6 + 2400;
+        //}
+        //else
+        //{
+        //    return (level * 16) - 8;
+        //}
 
+        return Mathf.FloorToInt(5 * Mathf.Pow(level, MANAGER.DB.levelDesign.PlayerExpExponent));
     }
 
     public bool GetCritical()

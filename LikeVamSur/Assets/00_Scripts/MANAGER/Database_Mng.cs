@@ -6,6 +6,8 @@ using UnityEngine.U2D;
 
 public class Database_Mng : MonoBehaviour
 {
+
+    public LevelDesign levelDesign;
     public PartDB Monster;
     public PartDB Item;
     //public PartDB Projectile;
@@ -18,8 +20,13 @@ public class Database_Mng : MonoBehaviour
 
     SpriteAtlas atlas;
 
+    private void Awake()
+    {
+        levelDesign = Resources.Load<LevelDesign>("DB/LevelDesign");
+    }
     private void Start()
     {
+        //levelDesign = Resources.Load<LevelDesign>("DB/LevelDesign");
         Monster = GetDB("Monster");
         Item = GetDB("Item");
         //Projectile = GetDB("Projectile");
@@ -30,7 +37,6 @@ public class Database_Mng : MonoBehaviour
         ActiveCards = new List<CardDB>(Resources.LoadAll<CardDB>("DB/Card/Active"));
         PassiveCards = new List<CardDB>(Resources.LoadAll<CardDB>("DB/Card/Passive"));
         NoneCards = new List<CardDB>(Resources.LoadAll<CardDB>("DB/Card/None"));
-
 
     }
 
